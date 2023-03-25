@@ -1,0 +1,31 @@
+class MathTrigonometry{
+
+    function Fraction sin(Fraction x){
+        var Fraction xSquared;
+        var Fraction xCubed;
+        var Fraction secondMember; 
+        var Fraction oneDivideBySix;
+
+        let xSquared = x.mult(x);
+        let xCubed = xSquared.mult(x);
+
+        let oneDivideBySix = Fraction.new(1, 6);
+        let secondMember = xCubed.mult(oneDivideBySix);
+
+        return x.sub(secondMember);
+    }
+
+    function Fraction cos(Fraction x){
+        var Fraction xSquared;
+        var Fraction secondMember;
+        var Fraction oneDivideByTwo;
+        var Fraction one;
+
+        let xSquared = x.mult(x);
+        let oneDivideByTwo = Fraction.new(1, 2);
+        let secondMember = xSquared.mult(oneDivideByTwo);
+        let one = Fraction.new(1, 1);
+
+        return one.sub(secondMember);
+    }
+}

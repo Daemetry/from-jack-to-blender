@@ -2,17 +2,31 @@ class ShapeCollection {
     
     function Shape getCubeShape(){
         var PointVector3D p000, p010, p001, p011, p100, p101, p111, p110;
+        var Array segments;
 
+        let p000 = PointVector3D.new(0, 0, 0);
+        let p010 = PointVector3D.new(0, 1, 0);
+        let p001 = PointVector3D.new(0, 0, 1);
+        let p011 = PointVector3D.new(0, 1, 1);
+        let p100 = PointVector3D.new(1, 0, 0);
+        let p101 = PointVector3D.new(1, 0, 1);
+        let p111 = PointVector3D.new(1, 1, 1);
+        let p110 = PointVector3D.new(1, 1, 0);
 
-        let p000 = PointVector3D(0, 0, 0);
-        let p010 = PointVector3D(0, 1, 0);
-        let p001 = PointVector3D(0, 0, 1);
-        let p011 = PointVector3D(0, 1, 1);
-        let p100 = PointVector3D(1, 0, 0);
-        let p101 = PointVector3D(1, 0, 1);
-        let p111 = PointVector3D(1, 1, 1);
-        let p110 = PointVector3D(1, 1, 0);
+        let segments[0] = Segment.new(p000, p010);
+        let segments[1] = Segment.new(p000, p001);
+        let segments[2] = Segment.new(p010, p011);
+        let segments[3] = Segment.new(p001, p011);
+        let segments[4] = Segment.new(p001, p101);
+        let segments[5] = Segment.new(p101, p111);
+        let segments[6] = Segment.new(p111, p110);
+        let segments[7] = Segment.new(p111, p011);
+        let segments[8] = Segment.new(p010, p110);
+        let segments[9] = Segment.new(p000, p100);
+        let segments[10] = Segment.new(p100, p110);
+        let segments[11] = Segment.new(p100, p101);
 
+        return Shape.new(segments, 12);
 
     } 
 }

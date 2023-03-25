@@ -52,6 +52,51 @@ class PointVector3D
         return result;
     }
 
+    method PointVector3D addToX(int value) {
+        var Fraction newXValue;
+
+        let newXValue = x;
+        let newXValue = newXValue.addInt(value);
+
+        return PointVector3D.new(newXValue, y, z);
+    }
+
+    method PointVector3D addToY(int value) {
+        var Fraction newYValue;
+
+        let newYValue = y;
+        let newYValue = newYValue.addInt(value);
+
+        return PointVector3D.new(x, newYValue, z);
+    }
+
+    method PointVector3D addToZ(int value) {
+        var Fraction newZValue;
+
+        let newZValue = z;
+        let newZValue = newZValue.addInt(value);
+
+        return PointVector3D.new(x, y, newZValue);
+    }
+    
+    method PointVector3D multX(int value) {
+        var Fraction newXValue;
+        let newXValue = value.multInt(x);
+        return PointVector3D.new(newXValue, y, z);
+    }
+
+    method PointVector3D multY(int value) {
+        var Fraction newYValue;
+        let newYValue = value.multInt(y);
+        return PointVector3D.new(x, newYValue, z);
+    }
+
+    method PointVector3D multZ(int value) {
+        var Fraction newZValue;
+        let newZValue = value.multInt(z);
+        return PointVector3D.new(x, y, newZValue);
+    }
+
     method void Dispose()
     {
         do Memory.deAlloc(this);

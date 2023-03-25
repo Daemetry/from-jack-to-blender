@@ -40,6 +40,11 @@ class Fraction{
         return;
     }
 
+
+    method int toInt(){
+        return numerator / denominator;
+    }
+
     method void print()
     {
         do Output.printInt(numerator);
@@ -211,7 +216,7 @@ class Fraction{
         return temp.sqrt();
     }
 
-    function Fraction Reverse(Fraction fr){
-        return Fraction.new(fr.getDenominator(), fr.getNumerator());
+    method Fraction reverse(){
+        return Fraction.new(denominator, numerator);
     }
 }

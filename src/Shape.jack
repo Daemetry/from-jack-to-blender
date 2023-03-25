@@ -2,11 +2,10 @@ class Shape{
     field Array segments;
     field Int segmentsCount;
 
-
     method Array _getSegments() { return segments; }
     method int _getSegmentsCount() { return segmentsCount; }
 
-    constructor Shape new(int size, Array segments){
+    constructor Shape new(Array segments, int size){
         var int i;
 
         let segmentsCount = size;

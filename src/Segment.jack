@@ -1,0 +1,10 @@
+class Segment{
+    field PointVector3D point1, point2;
+
+    constructor Segment new(PointVector3D p1, PointVector3D p2){
+        let point1 = p1;
+        let point2 = p2;
+        
+        return this;
+    }
+}

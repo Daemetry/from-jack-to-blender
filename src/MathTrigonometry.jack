@@ -1,5 +1,10 @@
 class MathTrigonometry{
 
+    function Fraction getPI(){
+        return Fraction.new(355, 113);
+    }
+
+
     function Fraction sin(Fraction x){
         var int sign;
         let sign = 1;
@@ -86,5 +91,15 @@ class MathTrigonometry{
 
         do Sys.error(1);
         return 1/0;
+    }
+
+    function Fraction tan(Fraction x){
+        var Fraction sinX;
+        var Fraction cosX;
+        
+        let sinX = MathTrigonometry.sin(x);
+        let cosX = MathTrigonometry.cos(x);
+
+        return sinX.div(cosX);
     }
 }

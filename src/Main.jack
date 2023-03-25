@@ -2,10 +2,26 @@ class Main
 {
     function void main()
     {
-        var Fraction f;
-        
-        let f = Fraction.fracSqrt(2);
-        do f.print();
+        var int timeValue; // Some time value
+        var int screenWidth, screenHeight;
+        var Fraction fNear, fFar, fFov, fAspectRatio, fFovRad;
+        var Matrix4x4 projectionMatrix, getRotationZMatrix, getRotationXMatrix;
+
+        let timeValue = 1;
+
+        let screenWidth = 512;
+        let screenHeight = 256;
+
+        let fNear = Fraction.new(1, 10);
+        let fFar = Fraction.new(1000, 1);
+        let fFov = Fraction.new(90, 1);
+        let fAspectRatio = Fraction.new(screenWidth, screenHeight);
+        let fFovRad = Extensions.computefFovRad(fFov);
+
+        let projectionMatrix = Matrix4x4.getProjectionMatrix(fNear, fFar, fFov, fAspectRatio, fFovRad);
+        let getRotationZMatrix = Matrix4x4.getRotationZMatrix(timeValue);
+        let getRotationXMatrix = Matrix4x4.getRotationXMatrix(timeValue);
+
 
         return;
     }

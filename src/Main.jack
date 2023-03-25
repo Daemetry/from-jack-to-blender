@@ -3,9 +3,10 @@ class Main
     function void main()
     {
         var Fraction f;
-        let f = Fraction.new(2, 15); 
+        
+        let f = Fraction.fracSqrt(2);
         do f.print();
-        do f.dispose();
+
         return;
     }
 }

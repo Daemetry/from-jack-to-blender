@@ -8,6 +8,12 @@ class Fraction{
         return this; 
     }
 
+    constructor Fraction newUnreduced(int x, int y) {
+        let numerator = x;
+        let denominator = y;
+        return this; 
+    }
+
     /** get accessor method for fraction's denominator */
     method int getDenominator() { return denominator; }
     /** get accessor method for fraction's numerator */
@@ -40,6 +46,8 @@ class Fraction{
         return;
     }
 
+
+    /** Computes the greatest common denominator of integers a and b */
     function int gcd(int a, int b)
     {
         var int r;
@@ -52,27 +60,138 @@ class Fraction{
         return a;
     }
     
-    method Fraction add(Fraction other)
+    /** Computes the least common multiple of integers a and b */
+    function int lcm(int a, int b)
     {
-        var int sumNumerators;
-        let sumNumerators = (numerator * other.getDenominator()) + (other.getNumerator() * denominator);
-        return Fraction.new(sumNumerators, denominator * other.getDenominator());
-    }
-
-    method Fraction sub(Fraction other)
-    {
-        var int subNumerators;
-        let subNumerators = (numerator * other.getDenominator()) - (other.getNumerator() * denominator);
-        return Fraction.new(subNumerators, denominator * other.getDenominator());
+        return a / Fraction.gcd(a, b) * b;
     }
     
-    method Fraction mult(Fraction other)
+    // Fraction to Fraction mathematics
+
+    // Doing this using the gcd should hopefully result
+    // in less overflows
+    
+    /** Adds other fraction to this into a new object */
+    method Fraction add(Fraction other)
     {
-        return Fraction.new(numerator * other.getNumerator(), denominator * other.getDenominator());
+        var int sumNumerators, gcd;
+        let gcd = Fraction.gcd(denominator, other.getDenominator());
+        let sumNumerators = (numerator * (other.getDenominator() / gcd)) + (other.getNumerator() * (denominator / gcd));
+        return Fraction.newUnreduced(sumNumerators, denominator / gcd * other.getDenominator());
     }
 
+    /** Subtracts other fraction from this into a new object */
+    method Fraction sub(Fraction other)
+    {
+        var int subNumerators, gcd;
+        let gcd = Fraction.gcd(denominator, other.getDenominator());
+        let subNumerators = (numerator * (other.getDenominator() / gcd)) - (other.getNumerator() * (denominator / gcd));
+        return Fraction.newUnreduced(subNumerators, denominator / gcd * other.getDenominator());
+    }
+    
+    /** Multiplies this fraction by other into a new object */
+    method Fraction mult(Fraction other)
+    {
+        var int gcd1, gcd2;
+
+        let gcd1 = Fraction.gcd(numerator, other.getDenominator());
+        let gcd2 = Fraction.gcd(denominator, other.getNumerator());
+        
+        return Fraction.newUnreduced(
+            (numerator / gcd1) * (other.getNumerator() / gcd2), 
+            (denominator / gcd2) * (other.getDenominator() / gcd1));
+    }
+
+    /** Divides this fraction by other into a new object */
     method Fraction div(Fraction other)
     {
-        return Fraction.new(numerator * other.getDenominator(), denominator * other.getNumerator());
+        var Fraction otherFlipped, multRes;
+        let otherFlipped = Fraction.newUnreduced(other.getDenominator(), other.getNumerator());
+        let multRes = this;
+        let multRes = multRes.mult(otherFlipped);
+        return multRes;
+    }
+
+    /** Takes the square root of the fraction */
+    method Fraction sqrt()
+    {
+        // The numerator and denominator are multipled defore being
+        // passed down into Math.sqrt in order to somehow increase 
+        // the expected precision
+        var int multiplier;
+
+        let multiplier = 1;
+
+        if ((numerator < 8196) & (denominator < 8196))
+        {
+            let multiplier = 4;
+        }
+
+        if ((numerator < 2048) & (denominator < 2048))
+        {
+            let multiplier = 16;
+        }
+
+        if ((numerator < 512) & (denominator < 512))
+        {
+            let multiplier = 64;
+        }
+
+        if ((numerator < 128) & (denominator < 128))
+        {
+            let multiplier = 256;
+        }
+
+        if ((numerator < 32) & (denominator < 32))
+        {
+            let multiplier = 1024;
+        }
+
+
+        return Fraction.new(
+            Math.sqrt(numerator * multiplier),
+            Math.sqrt(denominator * multiplier));
+    }
+
+    // Fraction to Int mathematics
+
+    /** Adds an integer to this fraction into a new object*/
+    method Fraction addInt(int number)
+    {
+        return Fraction.new(
+            numerator + (number * denominator), 
+            denominator);
+    }
+
+    /** Subtracts an integer from this fraction into a new object*/
+    method Fraction subInt(int number)
+    {
+        return Fraction.new(
+            numerator - (number * denominator), 
+            denominator);
+    }
+
+    /** Multiplies this fraction by a given integer into a new object */
+    method Fraction multInt(int number)
+    {
+        return Fraction.new(
+            numerator * number,
+            denominator);
+    }
+
+    /** Divides this fraction by a given integer into a new object */
+    method Fraction divInt(int number)
+    {
+        return Fraction.new(
+            numerator,
+            denominator * number);
+    }
+
+    /** Takes the square root of a number using fractions for better precision */
+    function Fraction fracSqrt(int number)
+    {
+        var Fraction temp;
+        let temp = Fraction.newUnreduced(number, 1);
+        return temp.sqrt();
     }
 }

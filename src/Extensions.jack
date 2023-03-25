@@ -1,0 +1,12 @@
+class Extensions {
+    function Fraction computefFovRad(Fraction fFov){
+        var Fraction fFovRadDenominator, halffFov, secondPart, PI;
+
+        let halffFov = fFov.mult(Fraction.new(1, 2));
+        let PI = MathTrigonometry.getPI();
+        let secondPart = PI.multInt(180);
+        let fFovRadDenominator =  MathTrigonometry.tan(halffFov.div(secondPart)); //tanf(fFov * 0.5f / 180.0f * 3.14159f)
+        
+        return Fraction.Reverse(fFovRadDenominator);
+    }
+}

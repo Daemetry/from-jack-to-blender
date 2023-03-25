@@ -1,5 +1,13 @@
 class Fraction{
-    field int numerator, denominator;
+    field int numerator, denominator;   
+
+    function Fraction getDefault(){
+        return Fraction.new(0, 1);
+    }
+
+    function Fraction getOne(){
+        return Fraction.new(1, 1);
+    }
 
     constructor Fraction new(int x, int y) {
         let numerator = x;
@@ -201,5 +209,9 @@ class Fraction{
         var Fraction temp;
         let temp = Fraction.newUnreduced(number, 1);
         return temp.sqrt();
+    }
+
+    function Fraction Reverse(Fraction fr){
+        return Fraction.new(fr.getDenominator(), fr.getNumerator());
     }
 }

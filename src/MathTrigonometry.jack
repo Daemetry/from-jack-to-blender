@@ -1,7 +1,11 @@
 class MathTrigonometry{
 
+    function Fraction getPI(){
+        return Fraction.new(355, 113);
+    }
+
+
     function Fraction sin(int x){
-        var Fraction localX;
         var int sign;
         let sign = 1;
 

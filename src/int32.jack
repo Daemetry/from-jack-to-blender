@@ -1,0 +1,15 @@
+// class int32 
+// {
+//     field int lsb, msb;
+
+//     method int32 Add(int32 other)
+//     {
+        
+//     }
+
+//     method void Dispose()
+//     {
+//         do Memory.deAlloc(this);
+//         return;
+//     }
+// }

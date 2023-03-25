@@ -1,0 +1,50 @@
+class PointVector3D 
+{
+    // Note: the fields are basically readonly
+    // and initiated on creation of the point
+    field Fraction x, y, z;
+
+    constructor PointVector3D new(Fraction coordX, Fraction coordY, Fraction coordZ)
+    {
+        let x = coordX;
+        let y = coordY;
+        let z = coordZ;
+
+        return this;
+    }
+
+    /* I wish these could be C# properties!
+       And also, these are meant to be private,
+       but Jack does not have any mechanisms to
+       ensure something like that, so
+       this will be a convention like Python's*/
+    method Fraction _getXcoord() { return x; }
+    method Fraction _getYcoord() { return y; }
+    method Fraction _getZcoord() { return z; }
+
+    /** Adds this vector and the other as a new object */
+    method PointVector3D vectorAdd(PointVector3D other) 
+    {
+        return PointVector3D.new(
+            x + other._getXcoord(),
+            y + other._getYcoord(),
+            z + other._getZcoord()
+        )
+    }
+
+    /** Return the distance between two points as a Fraction object */
+    method Fraction getDistanceTo(PointVector3D other)
+    {
+        var Fraction result;
+
+        
+
+        return result;
+    }
+
+    method void Dispose()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+}

@@ -1,13 +1,9 @@
 function Main.main 1
 push constant 2
-push constant 15
-call Fraction.new 2
+call Fraction.fracSqrt 1
 pop local 0
 push local 0
 call Fraction.print 1
-pop temp 0
-push local 0
-call Fraction.dispose 1
 pop temp 0
 push constant 0
 return

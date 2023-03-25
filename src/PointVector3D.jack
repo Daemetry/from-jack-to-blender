@@ -32,6 +32,7 @@ class PointVector3D
         );
     }
 
+    /** Subtracts the other vector from this as a new object */
     method PointVector3D vectorSub(PointVector3D other)
     {
         return PointVector3D.new(
@@ -42,14 +43,14 @@ class PointVector3D
     }
 
     /** Return the distance between two points as a Fraction object */
-    // method Fraction getDistanceTo(PointVector3D other)
-    // {
-    //     var Fraction result;
+    method Fraction getDistanceTo(PointVector3D other)
+    {
+        var Fraction result;
 
         
 
-    //     return result;
-    // }
+        return result;
+    }
 
     method void Dispose()
     {

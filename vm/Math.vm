@@ -1,9 +1,0 @@
-function Math.fracSqrt 0
-push argument 0
-call Fraction.getNumerator 1
-call Math.sqrt 1
-push argument 0
-call Fraction.getDenominator 1
-call Math.sqrt 1
-call Fraction.new 2
-return

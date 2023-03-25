@@ -59,6 +59,11 @@ call PointVector3D._getZcoord 1
 call Fraction.sub 2
 call PointVector3D.new 3
 return
+function PointVector3D.getDistanceTo 1
+push argument 0
+pop pointer 0
+push local 0
+return
 function PointVector3D.Dispose 0
 push argument 0
 pop pointer 0

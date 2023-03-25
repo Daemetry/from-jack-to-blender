@@ -4,7 +4,7 @@ class Main
     {
         var Fraction f;
         
-        let f = Fraction.fracSqrt(2);
+        let f = MathTrigonometry.tan(-445);
         do f.print();
 
         return;

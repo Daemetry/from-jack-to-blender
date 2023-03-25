@@ -1,8 +1,14 @@
 class MathTrigonometry{
 
-    function Fraction sin(Fraction x){
+    function Fraction sin(int x){
+        var Fraction localX;
         var int sign;
         let sign = 1;
+
+        if(x < 0){
+            let x = x * (-1);
+            let sign = -1;
+        }
 
         while(~(x < 360)){
             let x = x - 360;
@@ -44,9 +50,13 @@ class MathTrigonometry{
         return 1/0;
     }
 
-    function Fraction cos(Fraction x){
+    function Fraction cos(int x){
         var int sign;
         let sign = 1;
+
+        if(x < 0){
+            let x = x * (-1);
+        }
 
         while(~(x < 360)){
             let x = x - 360;
@@ -86,5 +96,13 @@ class MathTrigonometry{
 
         do Sys.error(1);
         return 1/0;
+    }
+
+    function Fraction tan(int x){
+        var Fraction sinX, cosX;
+        let sinX = MathTrigonometry.sin(x);
+        let cosX = MathTrigonometry.cos(x);
+
+        return sinX.div(cosX);
     }
 }

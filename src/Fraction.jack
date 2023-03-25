@@ -71,6 +71,14 @@ class Fraction{
     // Doing this using the gcd should hopefully result
     // in less overflows
     
+    function boolean isNegative(Fraction x){
+        var int num, denom;
+        let num = x.getNumerator();
+        let denom = x.getDenominator();
+
+        return num * denom < 0;
+    }
+
     /** Adds other fraction to this into a new object */
     method Fraction add(Fraction other)
     {

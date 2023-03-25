@@ -6,7 +6,8 @@ class Extensions {
         let PI = MathTrigonometry.getPI();
         let secondPart = PI.multInt(180);
         let fFovRadDenominator =  MathTrigonometry.tan(halffFov.div(secondPart)); 
-        //tanf(fFov * 0.5f / 180.0f * 3.14159f)
+        
+        // 1 / tan(fFov * 0.5f / 180.0f * 3.14159f)
         
         return fFovRadDenominator.reverse();
     }

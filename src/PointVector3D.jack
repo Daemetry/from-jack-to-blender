@@ -5,7 +5,7 @@ class PointVector3D
     field Fraction x, y, z;
 
     /** Returns the default (0, 0, 0) vector/point.
-        Should be used in a perfect world :) */ 
+        Shouldn't be used in a perfect world :) */ 
     function PointVector3D default()
     {
         return PointVector3D.new(0, 0, 0);
@@ -20,22 +20,18 @@ class PointVector3D
         return this;
     }
 
-    /* I wish these could be C# properties!
-       And also, these are meant to be private,
-       but Jack does not have any mechanisms to
-       ensure something like that, so
-       this will be a convention like Python's*/
-    method Fraction _getXcoord() { return x; }
-    method Fraction _getYcoord() { return y; }
-    method Fraction _getZcoord() { return z; }
+    /* I wish these could be C# properties! */
+    method Fraction getXcoord() { return x; }
+    method Fraction getYcoord() { return y; }
+    method Fraction getZcoord() { return z; }
 
     /** Adds this vector and the other as a new object */
     method PointVector3D vectorAdd(PointVector3D other) 
     {
         return PointVector3D.new(
-            x.add(other._getXcoord()),
-            y.add(other._getYcoord()),
-            z.add(other._getZcoord())
+            x.add(other.getXcoord()),
+            y.add(other.getYcoord()),
+            z.add(other.getZcoord())
         );
     }
 
@@ -43,9 +39,9 @@ class PointVector3D
     method PointVector3D vectorSub(PointVector3D other)
     {
         return PointVector3D.new(
-            x.sub(other._getXcoord()),
-            y.sub(other._getYcoord()),
-            z.sub(other._getZcoord())
+            x.sub(other.getXcoord()),
+            y.sub(other.getYcoord()),
+            z.sub(other.getZcoord())
         );
     }
 
@@ -55,35 +51,88 @@ class PointVector3D
     {
         var Fraction result;
 
-        let result = x.mult( other._getXcoord() );
-        let result = result.add( y.mult(other._getYcoord()) );
-        let result = result.add( z.mult(other._getZcoord()) );
+        let result = x.mult( other.getXcoord() );
+        let result = result.add( y.mult(other.getYcoord()) );
+        let result = result.add( z.mult(other.getZcoord()) );
 
         return result;
     }
 
     /** */
+    /** 
     method PointVector3D crossProduct(PointVector3D other)
     {
         // TODO: realise this method using matrix determinants when they are done
         return PointVector3D.default();
-    }
+    } 
+    */
 
     /** Return the distance between two points as a Fraction object */
     method Fraction getDistanceTo(PointVector3D other)
     {
         var Fraction result, temp;
 
-        let temp = x.sub(other._getXcoord());
+        let temp = x.sub(other.getXcoord());
         let result = temp.mult(temp);
 
-        let temp = y.sub(other._getYcoord());
+        let temp = y.sub(other.getYcoord());
         let result = result.add( temp.mult(temp) );
         
-        let temp = z.sub(other._getZcoord());
+        let temp = z.sub(other.getZcoord());
         let result = result.add( temp.mult(temp) );
 
         return result.sqrt();
+    }
+    
+    /** Adds _value_ to x coordinate of this and creates a new object */
+    method PointVector3D addToX(int value) {
+        var Fraction newXValue;
+
+        let newXValue = x;
+        let newXValue = newXValue.addInt(value);
+
+        return PointVector3D.new(newXValue, y, z);
+    }
+
+    /** Adds _value_ to y coordinate of this and creates a new object */
+    method PointVector3D addToY(int value) {
+        var Fraction newYValue;
+
+        let newYValue = y;
+        let newYValue = newYValue.addInt(value);
+
+        return PointVector3D.new(x, newYValue, z);
+    }
+
+    /** Adds _value_ to z coordinate of this and creates a new object */
+    method PointVector3D addToZ(int value) {
+        var Fraction newZValue;
+
+        let newZValue = z;
+        let newZValue = newZValue.addInt(value);
+
+        return PointVector3D.new(x, y, newZValue);
+    }
+    
+    /** Multiplies the x coordinate of this by value and creates a new object */
+    method PointVector3D multX(int value) {
+        var Fraction newXValue;
+        let newXValue = value.multInt(x);
+        return PointVector3D.new(newXValue, y, z);
+    }
+
+    /** Multiplies the y coordinate of this by value and creates a new object */
+    method PointVector3D multY(int value) {
+        var Fraction newYValue;
+        let newYValue = value.multInt(y);
+        return PointVector3D.new(x, newYValue, z);
+    }
+
+    /** Multiplies the z coordinate of this by value and creates a new object */
+    method PointVector3D multZ(int value) {
+        var Fraction newZValue;
+        let newZValue = value.multInt(z);
+        return PointVector3D.new(x, y, newZValue);
     }
 
     method void Dispose()

@@ -1,0 +1,20 @@
+class Shape{
+    field Array segments;
+    field Int segmentsCount;
+
+    method Array getSegments() { return segments; }
+    method int getSegmentsCount() { return segmentsCount; }
+
+    constructor Shape new(Array segments, int size){
+        var int i;
+
+        let segmentsCount = size;
+
+        let i = 0;
+        while (i < size){
+            let segments[i] = segments[i];
+        }
+
+        return this;
+    }
+}

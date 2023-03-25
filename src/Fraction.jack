@@ -1,5 +1,13 @@
 class Fraction{
-    field int numerator, denominator;
+    field int numerator, denominator;   
+
+    function Fraction getDefault(){
+        return Fraction.new(0, 1);
+    }
+
+    function Fraction getOne(){
+        return Fraction.new(1, 1);
+    }
 
     constructor Fraction new(int x, int y) {
         if (y = 0)
@@ -43,6 +51,11 @@ class Fraction{
         return;
     }
 
+
+    method int toInt(){
+        return numerator / denominator;
+    }
+
     method void print()
     {
         do Output.printInt(numerator);
@@ -82,6 +95,14 @@ class Fraction{
     // Doing this using the gcd should hopefully result
     // in less overflows
     
+    function boolean isNegative(Fraction x){
+        var int num, denom;
+        let num = x.getNumerator();
+        let denom = x.getDenominator();
+
+        return num * denom < 0;
+    }
+
     /** Adds other fraction to this into a new object */
     method Fraction add(Fraction other)
     {
@@ -204,5 +225,9 @@ class Fraction{
         var Fraction temp;
         let temp = Fraction.newUnreduced(number, 1);
         return temp.sqrt();
+    }
+
+    method Fraction reverse(){
+        return Fraction.new(denominator, numerator);
     }
 }

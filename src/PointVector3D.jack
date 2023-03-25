@@ -26,21 +26,30 @@ class PointVector3D
     method PointVector3D vectorAdd(PointVector3D other) 
     {
         return PointVector3D.new(
-            x + other._getXcoord(),
-            y + other._getYcoord(),
-            z + other._getZcoord()
-        )
+            x.add(other._getXcoord()),
+            y.add(other._getYcoord()),
+            z.add(other._getZcoord())
+        );
+    }
+
+    method PointVector3D vectorSub(PointVector3D other)
+    {
+        return PointVector3D.new(
+            x.sub(other._getXcoord()),
+            y.sub(other._getYcoord()),
+            z.sub(other._getZcoord())
+        );
     }
 
     /** Return the distance between two points as a Fraction object */
-    method Fraction getDistanceTo(PointVector3D other)
-    {
-        var Fraction result;
+    // method Fraction getDistanceTo(PointVector3D other)
+    // {
+    //     var Fraction result;
 
         
 
-        return result;
-    }
+    //     return result;
+    // }
 
     method void Dispose()
     {

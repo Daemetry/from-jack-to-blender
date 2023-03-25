@@ -2,11 +2,10 @@ class Main
 {
     function void main()
     {
-        /*var Fraction f;
+        var Fraction f;
         let f = Fraction.new(2, 15); 
         do f.print();
-        f.dispose(); */
-        do Output.printInt(10);
+        do f.dispose();
         return;
     }
 }

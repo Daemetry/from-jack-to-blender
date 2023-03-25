@@ -8,6 +8,12 @@ class Fraction{
         return this; 
     }
 
+    /** get accessor method for fraction's denominator */
+    method int getDenominator() { return denominator; }
+    /** get accessor method for fraction's numerator */
+    method int getNumerator() { return numerator; }
+
+    /** Reduces the fraction, dividing the numerator and denominator by their gcd */
     method void reduce()
     {
         var int g;
@@ -46,11 +52,18 @@ class Fraction{
         return a;
     }
     
-    method Fraction plus(Fraction other)
+    method Fraction add(Fraction other)
     {
         var int sumNumerators;
         let sumNumerators = (numerator * other.getDenominator()) + (other.getNumerator() * denominator);
         return Fraction.new(sumNumerators, denominator * other.getDenominator());
+    }
+
+    method Fraction sub(Fraction other)
+    {
+        var int subNumerators;
+        let subNumerators = (numerator * other.getDenominator()) - (other.getNumerator() * denominator);
+        return Fraction.new(subNumerators, denominator * other.getDenominator());
     }
     
     method Fraction mult(Fraction other)
@@ -58,13 +71,8 @@ class Fraction{
         return Fraction.new(numerator * other.getNumerator(), denominator * other.getDenominator());
     }
 
-    method int getNumerator()
+    method Fraction div(Fraction other)
     {
-        return numerator;
-    }
-        
-    method int getDenominator()
-    {
-        return denominator;
+        return Fraction.new(numerator * other.getDenominator(), denominator * other.getNumerator());
     }
 }

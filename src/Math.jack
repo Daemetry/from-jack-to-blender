@@ -1,0 +1,10 @@
+class Math
+{
+    function Fraction fracSqrt(Fraction fraction)
+    {
+        return Fraction.new(
+            Math.sqrt(fraction.getNumerator()), 
+            Math.sqrt(fraction.getDenominator())
+            );
+    }
+}

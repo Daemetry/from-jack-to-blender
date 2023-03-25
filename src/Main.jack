@@ -22,7 +22,6 @@ class Main
         let getRotationZMatrix = Matrix4x4.getRotationZMatrix(timeValue);
         let getRotationXMatrix = Matrix4x4.getRotationXMatrix(timeValue);
 
-
         return;
     }
 }

@@ -1,31 +1,90 @@
 class MathTrigonometry{
 
     function Fraction sin(Fraction x){
-        var Fraction xSquared;
-        var Fraction xCubed;
-        var Fraction secondMember; 
-        var Fraction oneDivideBySix;
+        var int sign;
+        let sign = 1;
 
-        let xSquared = x.mult(x);
-        let xCubed = xSquared.mult(x);
+        while(~(x < 360)){
+            let x = x - 360;
+        }
 
-        let oneDivideBySix = Fraction.new(1, 6);
-        let secondMember = xCubed.mult(oneDivideBySix);
+        if(~(x < 180)){
+            let sign = -1;
+            let x = x - 180;
+        }
 
-        return x.sub(secondMember);
+        if(~(x < 90)){
+            let x = x - 90;
+        }
+
+        let x = x / 5;
+        let x = x * 5;
+
+        if(x = 0) { return Fraction.new(0, 0); }
+        if(x = 5){ return Fraction.new(sign * 9, 100); }
+        if(x = 10) { return Fraction.new(sign * 17, 100); }
+        if(x = 15) { return Fraction.new(sign * 26, 100); }
+        if(x = 20) { return Fraction.new(sign * 34, 100); }
+        if(x = 25) { return Fraction.new(sign * 42, 100); }
+        if(x = 30) { return Fraction.new(sign * 1, 2); }
+        if(x = 35) { return Fraction.new(sign * 57, 100); }
+        if(x = 40) { return Fraction.new(sign * 64, 100); }
+        if(x = 45) { return Fraction.new(sign * 71, 100); }
+        if(x = 50) { return Fraction.new(sign * 77, 100); }
+        if(x = 55) { return Fraction.new(sign * 82, 100); }
+        if(x = 60) { return Fraction.new(sign * 87, 100); }
+        if(x = 65) { return Fraction.new(sign * 91, 100); }
+        if(x = 70) { return Fraction.new(sign * 94, 100); }
+        if(x = 75) { return Fraction.new(sign * 97, 100); }
+        if(x = 80) { return Fraction.new(sign * 98, 100); }
+        if(x = 85) { return Fraction.new(sign * 99, 100); }
+        if(x = 90) { return Fraction.new(sign, 1); }
+
+        do Sys.error(1);
+        return 1/0;
     }
 
     function Fraction cos(Fraction x){
-        var Fraction xSquared;
-        var Fraction secondMember;
-        var Fraction oneDivideByTwo;
-        var Fraction one;
+        var int sign;
+        let sign = 1;
 
-        let xSquared = x.mult(x);
-        let oneDivideByTwo = Fraction.new(1, 2);
-        let secondMember = xSquared.mult(oneDivideByTwo);
-        let one = Fraction.new(1, 1);
+        while(~(x < 360)){
+            let x = x - 360;
+        }
 
-        return one.sub(secondMember);
+        if(~(x < 180)){
+            let sign = -1;
+            let x = x - 180;
+        }
+
+        if(~(x < 90)){
+            let x = x - 90;
+        }
+
+        let x = x / 5;
+        let x = x * 5;
+
+        if(x = 0) { return Fraction.new(sign, 1); }
+        if(x = 5){ return Fraction.new(sign * 99, 100); }
+        if(x = 10) { return Fraction.new(sign * 98, 100); }
+        if(x = 15) { return Fraction.new(sign * 97, 100); }
+        if(x = 20) { return Fraction.new(sign * 94, 100); }
+        if(x = 25) { return Fraction.new(sign * 91, 100); }
+        if(x = 30) { return Fraction.new(sign * 87, 100); }
+        if(x = 35) { return Fraction.new(sign * 82, 100); }
+        if(x = 40) { return Fraction.new(sign * 77, 100); }
+        if(x = 45) { return Fraction.new(sign * 71, 100); }
+        if(x = 50) { return Fraction.new(sign * 64, 100); }
+        if(x = 55) { return Fraction.new(sign * 57, 100); }
+        if(x = 60) { return Fraction.new(sign * 1, 2); }
+        if(x = 65) { return Fraction.new(sign * 42, 100); }
+        if(x = 70) { return Fraction.new(sign * 34, 100); }
+        if(x = 75) { return Fraction.new(sign * 26, 100); }
+        if(x = 80) { return Fraction.new(sign * 17, 100); }
+        if(x = 85) { return Fraction.new(sign * 9, 100); }
+        if(x = 90) { return Fraction.new(0, 0); }
+
+        do Sys.error(1);
+        return 1/0;
     }
 }

@@ -2,13 +2,24 @@ class Fraction{
     field int numerator, denominator;
 
     constructor Fraction new(int x, int y) {
+        if (y = 0)
+        {
+            Sys.error(0);
+        }
+
         let numerator = x;
         let denominator = y;
         do reduce();
         return this; 
     }
 
-    constructor Fraction newUnreduced(int x, int y) {
+    constructor Fraction newUnreduced(int x, int y) 
+    {
+        if (y = 0)
+        {
+            
+        }
+
         let numerator = x;
         let denominator = y;
         return this; 

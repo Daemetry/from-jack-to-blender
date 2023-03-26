@@ -5,17 +5,9 @@ class Shape{
     method Array _getSegments() { return segments; }
     method int _getSegmentsCount() { return segmentsCount; }
 
-    constructor Shape new(Array s, int size){
-        var int i;
-        var Segment tempSegment;
+    constructor Shape new(Array arr, int size){
         let segmentsCount = size;
-
-        let i = 0;
-        while (i < size){
-            let tempSegment = s[i];
-            let segments[i] = tempSegment;
-            let i = i + 1;
-        }
+        let segments = arr;
 
         return this;
     }

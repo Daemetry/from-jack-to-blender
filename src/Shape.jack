@@ -68,6 +68,8 @@ class Shape{
         var Segment li, lj, le; // 31
         var Array segments;
 
+        let segments = Array.new(31);
+
         // vertices
 
         let x = Fraction.new(-2, 100);

@@ -3,125 +3,124 @@ class Main
     function void main()
     {
         var int i;
-        var Fraction timeValue;
-
-        var int screenWidth, screenHeight, halfScreenWidth, halfScreenHeight;
-        var Fraction fNear, fFar, fFov, fAspectRatio, fFovRad;
-
-        var Matrix4x4 projectionMatrix;
-        var Matrix4x4 getRotationZMatrix;
-        var Matrix4x4  getRotationXMatrix;
-
+        var PointVector3D camera, tempPoint;
+        var PointVector3D screenSide, screenBottom, screenStart, screenNormal;
+        var PointVector3D ray1, ray2, screenPoint1, screenPoint2;
+        var Fraction numerator, denominator1, denominator2, t1, t2;
+        var Fraction coordX1, coordY1, coordX2, coordY2, tempFrac, lengthSqr;
         var Shape cube;
-        var Array segments;
-        var int segmentsCount;
+        var Array sides;
+        var Segment side;
+    
+        do Screen.setColor(true);
 
+        //let camera = PointVector3D.new( Fraction.newUnreduced(-2, 1), Fraction.newUnreduced(-2, 1), Fraction.getDefault());
+        let camera = PointVector3D.new( Fraction.newUnreduced(-3, 1), Fraction.newUnreduced(3, 1), Fraction.getDefault() );
 
-        var Segment tempSegment, translatedTempSegment;
-        var PointVector3D tempPoint1, tempPoint2;
-        var PointVector3D translatedPoint1, translatedPoint2;
-        var PointVector3D projectedPoint1, projectedPoint2;
-        var PointVector3D scaledPoint1, scaledPoint2;
-        var Fraction finalX1, finalX2, finalY1, finalY2;
-
-
-        var PointVector3D xySingleVector, offsetVector;
-        var Fraction three;
-
-
-
-        let timeValue = Fraction.new(1, 1);
-
-        // Screen options
-        let screenWidth = 512;
-        let screenHeight = 256;
-
-        let halfScreenWidth = 256;
-        let halfScreenHeight = 128;
-
-        let fNear = Fraction.new(1, 10);
-        let fFar = Fraction.new(1000, 1);
-        let fFov = Fraction.new(90, 1);
-        let fAspectRatio = Fraction.new(screenWidth, screenHeight);
-        let fFovRad = Extensions.computefFovRad(fFov);
-
-
-        // Matrixes
-        let projectionMatrix = Matrix4x4.getProjectionMatrix(fNear, fFar, fFov, fAspectRatio, fFovRad);
-        let getRotationZMatrix = Matrix4x4.getRotationZMatrix(timeValue);
-        let getRotationXMatrix = Matrix4x4.getRotationXMatrix(timeValue);
-
-
-        // Shape components
-        let cube = Shape.getCubeShape();
-        let segments = cube.getSegments();
-        let segmentsCount = cube.getSegmentsCount();
+        let screenStart = PointVector3D.new( Fraction.newUnreduced(-2, 1), Fraction.newUnreduced(2, 1), Fraction.newUnreduced(-1, 1) );
+        let screenBottom = PointVector3D.new( Fraction.getDefault(), Fraction.newUnreduced(-4, 1), Fraction.getDefault() );
+        let screenSide = PointVector3D.new( Fraction.getDefault(), Fraction.getDefault(), Fraction.newUnreduced(2, 1) );
         
-        // Other stuff
+        let screenNormal = screenBottom .crossProduct (screenSide);
+        let tempPoint = screenStart .vectorSub (camera);
+        let numerator = tempPoint .dotProduct (screenNormal);
+        do tempPoint.dispose();
 
-
-        let three = Fraction.new(3, 1);
-        let xySingleVector = PointVector3D.new(Fraction.getOne(), Fraction.getOne(), Fraction.getDefault());
-        let offsetVector = PointVector3D.new(Fraction.getDefault(), Fraction.getDefault(), three);
-
+        let cube = Shape.getCubeShape();
+        let sides = cube.getSegments();
 
         let i = 0;
-        while (i < segmentsCount){
+        while (i < cube.getSegmentsCount())
+        {
+            let side = sides[i];
 
-            let tempSegment = segments[i];
-            let tempPoint1 = tempSegment.getPoint1();
-            let tempPoint2 = tempSegment.getPoint2();
+            // Проводим прямую, соединяющую камеру и точку отрезка
+            // и находим её проекцию на плоскость экрана.
+            // Процесс аналогичный компрактике "3D".
+            let ray1 = side.getPoint1();
+            let ray1 = ray1 .vectorSub (camera);
+            let denominator1 = ray1 .dotProduct (screenNormal);
+
+            let ray2 = side.getPoint2();
+            let ray2 = ray2 .vectorSub (camera);
+            let denominator2 = ray2 .dotProduct (screenNormal);
+
+            let t1 = numerator .div (denominator1);
+            let t2 = numerator .div (denominator2);
+            do denominator1.dispose(); do denominator2.dispose();
+
+            let tempPoint = ray1 .fracMult (t1);
+            let screenPoint1 = camera .vectorAdd (tempPoint);
+            do tempPoint.dispose();
+            let tempPoint = screenPoint1;
+            let screenPoint1 = tempPoint .vectorSub (screenStart);
+            do tempPoint.dispose();
+            do t1.dispose();
+
+            let tempPoint = ray2 .fracMult (t2);
+            let screenPoint2 = camera .vectorAdd (tempPoint);
+            do tempPoint.dispose();
+            let tempPoint = screenPoint2;
+            let screenPoint2 = tempPoint .vectorSub (screenStart);
+            do tempPoint.dispose();
+            do t2.dispose();
+
+            // Далее получаем координаты полученных точек в базисе сторон экрана,
+            // чтобы проверить, лежат ли они в пределах экрана и получить соответствующие им пиксели
+            let lengthSqr = screenBottom .dotProduct (screenBottom);
             
-        
-            // Rotation 
+            let tempFrac = screenBottom .dotProduct (screenPoint1);
+            let coordX1 = tempFrac .div (lengthSqr);
+            do tempFrac.dispose();
 
-            // Offset into the screen
+            let tempFrac = screenBottom .dotProduct (screenPoint2);
+            let coordX2 = tempFrac .div (lengthSqr);
+            do tempFrac.dispose();
 
-            let translatedPoint1 = tempPoint1.vectorAdd(offsetVector);
-            let translatedPoint2 = tempPoint2.vectorAdd(offsetVector);
+            do lengthSqr.dispose();
+            let lengthSqr = screenSide .dotProduct (screenSide);
 
-            // Project triangles from 3D --> 2D
-            let projectedPoint1 = Matrix4x4.multiplyMatrixVector(translatedPoint1, projectionMatrix);
-            let projectedPoint2 = Matrix4x4.multiplyMatrixVector(translatedPoint2, projectionMatrix);
+            let tempFrac = screenSide .dotProduct (screenPoint1);
+            let coordY1 = tempFrac .div (lengthSqr);
+            do tempFrac.dispose();
 
-            // Scale into view
+            let tempFrac = screenSide .dotProduct (screenPoint2);
+            let coordY2 = tempFrac .div (lengthSqr);
+            do tempFrac.dispose();
 
+            do lengthSqr.dispose();
 
-            let scaledPoint1 = projectedPoint1.vectorAdd(xySingleVector);
-            let scaledPoint2 = projectedPoint2.vectorAdd(xySingleVector);
+            // проверка на то, лежит ли точка в экране, производится через смешанное произведение
+            
+            // пока обойдёмся без проверки
 
-            let scaledPoint1 = scaledPoint1.multX(halfScreenWidth);
-            let scaledPoint1 = scaledPoint1.multY(halfScreenHeight);
+            let tempFrac = coordX1;
+            let coordX1 = tempFrac .multInt (512);
+            do tempFrac.dispose();
 
-            let scaledPoint2 = scaledPoint2.multX(halfScreenWidth);
-            let scaledPoint2 = scaledPoint2.multY(halfScreenHeight);
+            let tempFrac = coordX2;
+            let coordX2 = tempFrac .multInt (512);
+            do tempFrac.dispose();
 
+            let tempFrac = coordY1;
+            let coordY1 = tempFrac .multInt (256);
+            do tempFrac.dispose();
 
-            let finalX1 = scaledPoint1.getXcoord();
-            let finalY1 = scaledPoint1.getYcoord();
+            let tempFrac = coordY2;
+            let coordY2 = tempFrac .multInt (256);
+            do tempFrac.dispose();
 
-            let finalX2 = scaledPoint2.getXcoord();
-            let finalY2 = scaledPoint2.getYcoord();
+            do Screen.drawLine( 
+                coordX1.toInt(), coordY1.toInt(),
+                coordX2.toInt(), coordY2.toInt());
 
-            // do finalX1.print();
-            // do Output.println();
-
-            // do finalY1.print();
-            // do Output.println();
-
-            // do finalX2.print();
-            // do Output.println();
-
-            // do finalY2.print();
-            // do Output.println();
-
-            do Screen.setColor(true);
-            do Screen.drawLine(finalX1.toInt(), finalY1.toInt(), finalX2.toInt(), finalY2.toInt());
+            do ray1.dispose(); do ray2.dispose();
+            do screenPoint1.dispose(); do screenPoint2.dispose();
+            do coordX1.dispose(); do coordX2.dispose();
+            do coordY1.dispose(); do coordY2.dispose();
 
             let i = i + 1;
         }
-
-
 
         return;
     }

@@ -138,9 +138,16 @@ class Fraction{
     method Fraction div(Fraction other)
     {
         var Fraction otherFlipped, multRes;
+        
+        if (other.getNumerator() = 0)
+        {
+            do Sys.error(0);
+        }
+
         let otherFlipped = Fraction.newUnreduced(other.getDenominator(), other.getNumerator());
         let multRes = this;
         let multRes = multRes.mult(otherFlipped);
+        do otherFlipped.dispose();
         return multRes;
     }
 

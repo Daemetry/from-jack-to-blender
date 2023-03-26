@@ -23,3 +23,10 @@ pop local 0
 push local 0
 call Fraction.reverse 1
 return
+function Extensions.mod 0
+push argument 0
+push argument 0
+push argument 1
+call Math.divide 2
+sub
+return

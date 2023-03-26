@@ -25,6 +25,25 @@ class PointVector3D
     method Fraction getYcoord() { return y; }
     method Fraction getZcoord() { return z; }
 
+    method Fraction getLength()
+    {
+        var Fraction temp1, temp2, temp3;
+
+        let temp1 = x .mult (x);
+        let temp2 = y .mult (y);
+        let temp3 = temp1 .add (temp2);
+        do temp1.dispose(); do temp2.dispose();
+        
+        let temp1 = z .mult (z);
+        let temp2 = temp3 .add (temp1);
+        do temp1.dispose(); do temp3.dispose();
+        
+        let temp1 = temp2.sqrt();
+        do temp2.dispose();
+
+        return temp1;
+    }
+
     /** Adds this vector and the other as a new object */
     method PointVector3D vectorAdd(PointVector3D other) 
     {
@@ -45,27 +64,57 @@ class PointVector3D
         );
     }
 
+    /** */
+    method PointVector3D fracMult(Fraction factor)
+    {
+        return PointVector3D.new(x .mult (factor), y .mult (factor), z .mult (factor));
+    }
+
     /** Return the standart dot product for two vectors treating the basis 
         as an orthogonal and normalised one */ 
     method Fraction dotProduct(PointVector3D other)
     {
-        var Fraction result;
+        var Fraction result, temp, temp2;
 
         let result = x.mult( other.getXcoord() );
-        let result = result.add( y.mult(other.getYcoord()) );
-        let result = result.add( z.mult(other.getZcoord()) );
+
+        let temp = y.mult(other.getYcoord());
+        let temp2 = result;
+        let result = temp2 .add (temp);
+        do temp.dispose(); do temp2.dispose();
+
+        let temp = z.mult(other.getZcoord());
+        let temp2 = result;
+        let result = temp2 .add (temp);
+        do temp.dispose(); do temp2.dispose();
 
         return result;
     }
 
-    /** */
-    /** 
+    /** Computes the cross product of two given vectors as a new vector in standart basis */
     method PointVector3D crossProduct(PointVector3D other)
     {
-        // TODO: realise this method using matrix determinants when they are done
-        return PointVector3D.default();
+        var Fraction newCoordX, newCoordY, newCoordZ;
+        var Fraction temp1, temp2;
+
+        let temp1 = y .mult (other.getZcoord());
+        let temp2 = z .mult (other.getYcoord());
+        let newCoordX = temp1 .sub (temp2);
+        do temp1.dispose(); do temp2.dispose();
+
+        let temp1 = z .mult (other.getXcoord());
+        let temp2 = x .mult (other.getZcoord());
+        let newCoordY = temp1 .sub (temp2);
+        do temp1.dispose(); do temp2.dispose();
+
+        let temp1 = x .mult (other.getYcoord());
+        let temp2 = y .mult (other.getXcoord());
+        let newCoordZ = temp1 .sub (temp2);
+        do temp1.dispose(); do temp2.dispose();
+
+        return PointVector3D.new( newCoordX, newCoordY, newCoordZ );
     } 
-    */
+    
 
     /** Return the distance between two points as a Fraction object */
     method Fraction getDistanceTo(PointVector3D other)
@@ -74,12 +123,15 @@ class PointVector3D
 
         let temp = x.sub(other.getXcoord());
         let result = temp.mult(temp);
+        do temp.dispose();
 
         let temp = y.sub(other.getYcoord());
         let result = result.add( temp.mult(temp) );
-        
+        do temp.dispose();
+
         let temp = z.sub(other.getZcoord());
         let result = result.add( temp.mult(temp) );
+        do temp.dispose();
 
         return result.sqrt();
     }
@@ -149,7 +201,7 @@ class PointVector3D
     }
 
 
-    method void Dispose()
+    method void dispose()
     {
         do Memory.deAlloc(this);
         return;

@@ -260,6 +260,17 @@ function Fraction.div 2
 push argument 0
 pop pointer 0
 push argument 1
+call Fraction.getNumerator 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
+push argument 1
 call Fraction.getDenominator 1
 push argument 1
 call Fraction.getNumerator 1
@@ -271,6 +282,9 @@ push local 1
 push local 0
 call Fraction.mult 2
 pop local 1
+push local 0
+call Fraction.dispose 1
+pop temp 0
 push local 1
 return
 function Fraction.sqrt 1

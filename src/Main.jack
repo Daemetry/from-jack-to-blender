@@ -2,15 +2,15 @@ class Main
 {
     function void main()
     {
-        var int cameraYPos, cameraXPos, tempInt;
-        var Shape cube, cosahedron, pyramid, rectangle;
+        var int cameraYPos, cameraXPos;
         var int screenWidth, screenHeight;
 
+        var Shape cube, cosahedron, pyramid, rectangle;
         var Scene scene;
 
-        let cube = Shape.getCubeShape();
-        let cosahedron = Shape.getIcosahedron();
-        let rectangle = Shape.getRectangle();
+        let cube = ShapeProvider.getCubeShape();
+        let cosahedron = ShapeProvider.getIcosahedron();
+        let rectangle = ShapeProvider.getRectangle();
         
         let screenHeight = 256;
         let screenWidth = 512;

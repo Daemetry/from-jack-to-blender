@@ -81,12 +81,14 @@ class PointVector3D
         let temp = y.mult(other.getYcoord());
         let temp2 = result;
         let result = temp2 .add (temp);
-        do temp.dispose(); do temp2.dispose();
+        do temp.dispose(); 
+        do temp2.dispose();
 
         let temp = z.mult(other.getZcoord());
         let temp2 = result;
         let result = temp2 .add (temp);
-        do temp.dispose(); do temp2.dispose();
+        do temp.dispose(); 
+        do temp2.dispose();
 
         return result;
     }
@@ -100,17 +102,20 @@ class PointVector3D
         let temp1 = y .mult (other.getZcoord());
         let temp2 = z .mult (other.getYcoord());
         let newCoordX = temp1 .sub (temp2);
-        do temp1.dispose(); do temp2.dispose();
+        do temp1.dispose(); 
+        do temp2.dispose();
 
         let temp1 = z .mult (other.getXcoord());
         let temp2 = x .mult (other.getZcoord());
         let newCoordY = temp1 .sub (temp2);
-        do temp1.dispose(); do temp2.dispose();
+        do temp1.dispose(); 
+        do temp2.dispose();
 
         let temp1 = x .mult (other.getYcoord());
         let temp2 = y .mult (other.getXcoord());
         let newCoordZ = temp1 .sub (temp2);
-        do temp1.dispose(); do temp2.dispose();
+        do temp1.dispose(); 
+        do temp2.dispose();
 
         return PointVector3D.new( newCoordX, newCoordY, newCoordZ );
     } 

@@ -13,17 +13,12 @@ class Scene{
         return this;
     }
 
-    method void setCameraYPos(int value){
-        let cameraYPos = value;
-        return;
-    }
-
     method void render(){
         var int i;
-        var PointVector3D camera, tempPoint;
-        var PointVector3D screenSide, screenBottom, screenStart, screenNormal;
-        var PointVector3D ray1, ray2, screenPoint1, screenPoint2;
-        var Fraction numerator, denominator1, denominator2, t1, t2;
+        var PointVector3D camera, tempPoint; // disposed
+        var PointVector3D screenSide, screenBottom, screenStart, screenNormal; // disposed
+        var PointVector3D ray1, ray2, screenPoint1, screenPoint2; // disposed
+        var Fraction numerator, denominator1, denominator2, t1, t2; // disposed
         var Fraction coordX1, coordY1, coordX2, coordY2, tempFrac, lengthSqr;
         var Array sides;
         var Segment side;
@@ -40,7 +35,7 @@ class Scene{
         let tempPoint = screenStart .vectorSub (camera);
         let numerator = tempPoint .dotProduct (screenNormal);
 
-        // do tempPoint.dispose();
+        do tempPoint.dispose();
     
         let sides = shape.getSegments();
         let i = 0;
@@ -50,6 +45,7 @@ class Scene{
 
         while (i < shape.getSegmentsCount())
         {
+
             let side = sides[i];
 
             // Проводим прямую, соединяющую камеру и точку отрезка
@@ -58,12 +54,29 @@ class Scene{
             // let ray1 = Matrix4x4.multiplyMatrixVector(side.getPoint1(), rotationXmatrix);
             // let ray1 = Matrix4x4.multiplyMatrixVector(ray1, rotationZmatrix);
             
-            let ray1 = side.getPoint1();
-            let ray1 = ray1 .vectorSub (camera);
-            let denominator1 = ray1 .dotProduct (screenNormal);
+
 
             // let ray2 = Matrix4x4.multiplyMatrixVector(side.getPoint2(), rotationXmatrix);
             // let ray2 = Matrix4x4.multiplyMatrixVector(ray2, rotationZmatrix);
+
+            // let tempPoint = side.getPoint1();
+            // let ray1 = tempPoint .vectorSub (camera);
+            // do tempPoint.dispose();
+            // let denominator1 = ray1 .dotProduct (screenNormal);
+            // do ray1.dispose();
+
+
+            // let tempPoint = side.getPoint2();
+            // let ray2 = tempPoint .vectorSub (camera);
+            // do tempPoint.dispose();
+            // let denominator2 = ray2 .dotProduct (screenNormal);
+            // do ray2.dispose();
+
+
+
+            let ray1 = side.getPoint1();
+            let ray1 = ray1 .vectorSub (camera);
+            let denominator1 = ray1 .dotProduct (screenNormal);
 
             let ray2 = side.getPoint2();
             let ray2 = ray2 .vectorSub (camera);
@@ -71,7 +84,9 @@ class Scene{
 
             let t1 = numerator .div (denominator1);
             let t2 = numerator .div (denominator2);
-            do denominator1.dispose(); do denominator2.dispose();
+
+            do denominator1.dispose(); 
+            do denominator2.dispose();
 
             let tempPoint = ray1 .fracMult (t1);
             let screenPoint1 = camera .vectorAdd (tempPoint);
@@ -84,6 +99,7 @@ class Scene{
             let tempPoint = ray2 .fracMult (t2);
             let screenPoint2 = camera .vectorAdd (tempPoint);
             do tempPoint.dispose();
+
             let tempPoint = screenPoint2;
             let screenPoint2 = tempPoint .vectorSub (screenStart);
             do tempPoint.dispose();
@@ -99,9 +115,10 @@ class Scene{
 
             let tempFrac = screenBottom .dotProduct (screenPoint2);
             let coordX2 = tempFrac .div (lengthSqr);
-            do tempFrac.dispose();
 
+            do tempFrac.dispose();
             do lengthSqr.dispose();
+
             let lengthSqr = screenSide .dotProduct (screenSide);
 
             let tempFrac = screenSide .dotProduct (screenPoint1);
@@ -119,18 +136,22 @@ class Scene{
 
             
             let tempFrac = coordX1;
+            do coordX1.dispose();
             let coordX1 = tempFrac .multInt (screenWidth);
             do tempFrac.dispose();
 
             let tempFrac = coordX2;
+            do coordX2.dispose();
             let coordX2 = tempFrac .multInt (screenWidth);
             do tempFrac.dispose();
 
             let tempFrac = coordY1;
+            do coordY1.dispose();
             let coordY1 = tempFrac .multInt (screenHeight);
             do tempFrac.dispose();
 
             let tempFrac = coordY2;
+            do coordY2.dispose();
             let coordY2 = tempFrac .multInt (screenHeight);
             do tempFrac.dispose();
 
@@ -145,13 +166,31 @@ class Scene{
 
                 }
 
+            do ray1.dispose(); 
+            do ray2.dispose();
 
-            do ray1.dispose(); do ray2.dispose();
-            do screenPoint1.dispose(); do screenPoint2.dispose();
-            do coordX1.dispose(); do coordX2.dispose();
-            do coordY1.dispose(); do coordY2.dispose();
+            do screenPoint1.dispose(); 
+            do screenPoint2.dispose();
+
+            do coordX1.dispose(); 
+            do coordX2.dispose();
+
+            do coordY1.dispose(); 
+            do coordY2.dispose();
             let i = i + 1;
         }
+
+        do camera.dispose();
+        do numerator.dispose();
+        
+        do screenSide.dispose();
+        do screenBottom.dispose();
+        do screenStart.dispose();
+        do screenNormal.dispose();
+
         return;
     }
+
+    method void setCameraYPos(int value){ let cameraYPos = value; return; }
+    method void setCameraXPos(int value){ let cameraXPos = value; return; }
 }

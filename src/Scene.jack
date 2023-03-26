@@ -1,5 +1,24 @@
-class Render{
-    function void renderShape(Shape shape, int cameraYPos, int screenWidth, int screenHeight){
+class Scene{
+    field Shape shape;
+    field int cameraYPos, cameraXPos;
+    field int screenWidth, screenHeight;
+
+    constructor Scene new(Shape s, int camYPos, int camXPos, int scrWidth, int scrHeight){
+        let shape = s;
+        let cameraYPos = camYPos;
+        let cameraXPos = camXPos;
+        let screenWidth = scrWidth;
+        let screenHeight = scrHeight;
+
+        return this;
+    }
+
+    method void setCameraYPos(int value){
+        let cameraYPos = value;
+        return;
+    }
+
+    method void render(){
         var int i;
         var PointVector3D camera, tempPoint;
         var PointVector3D screenSide, screenBottom, screenStart, screenNormal;
@@ -11,7 +30,7 @@ class Render{
         // var Matrix4x4 rotationXmatrix, rotationZmatrix;
 
         do Screen.setColor(true);
-        let camera = PointVector3D.new( Fraction.newUnreduced(-3, 1), Fraction.newUnreduced(cameraYPos, 1), Fraction.getDefault() );
+        let camera = PointVector3D.new( Fraction.newUnreduced(cameraXPos, 1), Fraction.newUnreduced(cameraYPos, 1), Fraction.getDefault() );
 
         let screenStart = PointVector3D.new( Fraction.newUnreduced(-2, 1), Fraction.newUnreduced(2, 1), Fraction.newUnreduced(-1, 1) );
         let screenBottom = PointVector3D.new( Fraction.getDefault(), Fraction.newUnreduced(-4, 1), Fraction.getDefault() );
@@ -25,6 +44,7 @@ class Render{
     
         let sides = shape.getSegments();
         let i = 0;
+
         // let rotationXmatrix = Matrix4x4.getRotationXMatrix(tick);
         // let rotationZmatrix = Matrix4x4.getRotationZMatrix(tick);
 
@@ -130,13 +150,6 @@ class Render{
             do screenPoint1.dispose(); do screenPoint2.dispose();
             do coordX1.dispose(); do coordX2.dispose();
             do coordY1.dispose(); do coordY2.dispose();
-            
-
-
-            // пока обойдёмся без проверки
-
-
-
             let i = i + 1;
         }
         return;

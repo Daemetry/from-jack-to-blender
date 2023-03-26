@@ -287,4 +287,43 @@ class Shape{
 
         return Shape.new(segments, 8);
     }
+
+    function Shape getRectangle(){
+        var PointVector3D p000, p010, p100, p110;
+        var PointVector3D p002, p012,  p102, p112;
+        var Fraction zeroFraction, oneFraction, twoFraction;
+        var Array segments;
+
+        let segments = Array.new(12);
+        let zeroFraction = Fraction.new(0, 1);
+        let oneFraction = Fraction.new(1, 1);
+        let twoFraction = Fraction.new(2, 1);
+
+        let p000 = PointVector3D.new(zeroFraction, zeroFraction, zeroFraction);
+        let p010 = PointVector3D.new(zeroFraction, oneFraction, zeroFraction);
+        let p100 = PointVector3D.new(oneFraction, zeroFraction, zeroFraction);
+        let p110 = PointVector3D.new(oneFraction, oneFraction, zeroFraction);
+        
+
+        let p002 = PointVector3D.new(zeroFraction, zeroFraction, twoFraction);
+        let p012 = PointVector3D.new(zeroFraction, oneFraction, twoFraction);
+        let p102 = PointVector3D.new(oneFraction, zeroFraction, twoFraction);
+        let p112 = PointVector3D.new(oneFraction, oneFraction, twoFraction);
+        
+
+        let segments[0] = Segment.new(p000, p010);
+        let segments[1] = Segment.new(p000, p002);
+        let segments[2] = Segment.new(p010, p012);
+        let segments[3] = Segment.new(p002, p012);
+        let segments[4] = Segment.new(p002, p102);
+        let segments[5] = Segment.new(p102, p112);
+        let segments[6] = Segment.new(p112, p110);
+        let segments[7] = Segment.new(p112, p012);
+        let segments[8] = Segment.new(p010, p110);
+        let segments[9] = Segment.new(p000, p100);
+        let segments[10] = Segment.new(p100, p110);
+        let segments[11] = Segment.new(p100, p102);
+
+        return Shape.new(segments, 12);
+    } 
 }

@@ -2,34 +2,53 @@ class Main
 {
     function void main()
     {
-        var int cameraYPos;
-        var Shape cube, cosahedron, currentShape, pyramid;
+        var int cameraYPos, cameraXPos, tempInt;
+        var Shape cube, cosahedron, pyramid, rectangle;
         var int screenWidth, screenHeight;
 
-
-        let screenHeight = 256;
-        let screenWidth = 512;
+        var Scene scene;
 
         let cube = Shape.getCubeShape();
         let cosahedron = Shape.getIcosahedron();
-        let pyramid = Shape.getPyramid();
+        let rectangle = Shape.getRectangle();
         
-        let currentShape = pyramid;
+        let screenHeight = 256;
+        let screenWidth = 512;
 
         let cameraYPos = 0;
-        do Render.renderShape(currentShape, cameraYPos, screenWidth, screenHeight);
+        let cameraXPos = -3;
+
+        let scene = Scene.new(cube, cameraYPos, cameraXPos, screenWidth, screenHeight);
+        do scene.render();
 
         while (true){
-            if (Keyboard.keyPressed() = 132){
+            
+            if (Keyboard.keyPressed() = 132){ // right arrow
                 let cameraYPos = cameraYPos - 1;
+                do scene.setCameraYPos(cameraYPos);
                 do Screen.clearScreen();
-                do Render.renderShape(currentShape, cameraYPos, screenWidth, screenHeight);
+                do scene.render();
             }
 
-            if (Keyboard.keyPressed() = 130){
+            if (Keyboard.keyPressed() = 130){ // left arrow
                 let cameraYPos = cameraYPos + 1;
+                do scene.setCameraYPos(cameraYPos);
                 do Screen.clearScreen();
-                do Render.renderShape(currentShape, cameraYPos, screenWidth, screenHeight);
+                do scene.render();
+            }
+
+            if (Keyboard.keyPressed() = 131){ // up arrow
+                let cameraXPos = cameraYPos + 1;
+                do scene.setCameraYPos(cameraYPos);
+                do Screen.clearScreen();
+                do scene.render();
+            }
+
+            if (Keyboard.keyPressed() = 133){ // down arrow
+                let cameraXPos = cameraYPos - 1;
+                do scene.setCameraYPos(cameraYPos);
+                do Screen.clearScreen();
+                do scene.render();
             }
         }
 

@@ -1,0 +1,510 @@
+function Matrix4x4.getRotationZMatrix 3
+call Matrix4x4.new 0
+pop local 0
+push argument 0
+call MathTrigonometry.cos 1
+pop local 1
+push argument 0
+call MathTrigonometry.sin 1
+pop local 2
+push local 0
+push constant 0
+push constant 0
+push local 1
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 0
+push constant 1
+push local 2
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 1
+push constant 0
+push local 2
+push constant 1
+neg
+call Fraction.multInt 2
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 1
+push constant 1
+push local 1
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 2
+push constant 2
+call Fraction.getOne 0
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 3
+push constant 3
+call Fraction.getOne 0
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+return
+function Matrix4x4.getRotationXMatrix 4
+call Matrix4x4.new 0
+pop local 0
+push argument 0
+push constant 1
+push constant 2
+call Fraction.new 2
+call Fraction.mult 2
+pop local 1
+push local 1
+call MathTrigonometry.cos 1
+pop local 2
+push local 1
+call MathTrigonometry.sin 1
+pop local 3
+push local 0
+push constant 0
+push constant 0
+call Fraction.getOne 0
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 1
+push constant 1
+push local 2
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 1
+push constant 2
+push local 3
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 2
+push constant 1
+push local 3
+push constant 1
+neg
+call Fraction.multInt 2
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 2
+push constant 2
+push local 2
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 3
+push constant 3
+call Fraction.getOne 0
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+return
+function Matrix4x4.getProjectionMatrix 1
+call Matrix4x4.new 0
+pop local 0
+push local 0
+push constant 0
+push constant 0
+push argument 3
+push argument 4
+call Fraction.mult 2
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 1
+push constant 1
+push argument 4
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 2
+push constant 2
+push argument 1
+push argument 1
+push argument 0
+call Fraction.sub 2
+call Fraction.div 2
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+push constant 2
+push constant 3
+call Fraction.getOne 0
+call Matrix4x4.setValue 4
+pop temp 0
+push local 0
+return
+function Matrix4x4.fill4x4ArrayWithFractions 2
+push constant 4
+call Array.new 1
+pop local 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push constant 4
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 0
+add
+call Fraction.getDefault 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return
+function Matrix4x4.new 1
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+push constant 0
+pop local 0
+push constant 4
+call Array.new 1
+pop this 0
+label WHILE_EXP0
+push local 0
+push constant 4
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 0
+add
+call Matrix4x4.fill4x4ArrayWithFractions 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push pointer 0
+return
+function Matrix4x4.getValue 1
+push argument 0
+pop pointer 0
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 0
+push argument 2
+push local 0
+add
+pop pointer 1
+push that 0
+return
+function Matrix4x4.setValue 1
+push argument 0
+pop pointer 0
+push argument 1
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 0
+push argument 2
+push local 0
+add
+push argument 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push argument 1
+push this 0
+add
+push local 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+return
+function Matrix4x4.multiplyMatrixVector 21
+push argument 1
+push constant 0
+push constant 0
+call Matrix4x4.getValue 3
+pop local 4
+push argument 1
+push constant 1
+push constant 0
+call Matrix4x4.getValue 3
+pop local 5
+push argument 1
+push constant 2
+push constant 0
+call Matrix4x4.getValue 3
+pop local 6
+push argument 1
+push constant 3
+push constant 0
+call Matrix4x4.getValue 3
+pop local 7
+push argument 1
+push constant 0
+push constant 1
+call Matrix4x4.getValue 3
+pop local 8
+push argument 1
+push constant 1
+push constant 1
+call Matrix4x4.getValue 3
+pop local 9
+push argument 1
+push constant 2
+push constant 1
+call Matrix4x4.getValue 3
+pop local 10
+push argument 1
+push constant 3
+push constant 1
+call Matrix4x4.getValue 3
+pop local 11
+push argument 1
+push constant 0
+push constant 2
+call Matrix4x4.getValue 3
+pop local 12
+push argument 1
+push constant 1
+push constant 2
+call Matrix4x4.getValue 3
+pop local 13
+push argument 1
+push constant 2
+push constant 2
+call Matrix4x4.getValue 3
+pop local 14
+push argument 1
+push constant 3
+push constant 2
+call Matrix4x4.getValue 3
+pop local 15
+push argument 1
+push constant 0
+push constant 3
+call Matrix4x4.getValue 3
+pop local 16
+push argument 1
+push constant 1
+push constant 3
+call Matrix4x4.getValue 3
+pop local 17
+push argument 1
+push constant 2
+push constant 3
+call Matrix4x4.getValue 3
+pop local 18
+push argument 1
+push constant 3
+push constant 3
+call Matrix4x4.getValue 3
+pop local 19
+push local 4
+push argument 0
+call PointVector3D.getXcoord 1
+call Fraction.mult 2
+pop local 0
+push local 0
+push local 5
+push argument 0
+call PointVector3D.getYcoord 1
+call Fraction.mult 2
+call Fraction.add 2
+pop local 0
+push local 0
+push local 6
+push argument 0
+call PointVector3D.getZcoord 1
+call Fraction.mult 2
+call Fraction.add 2
+pop local 0
+push local 0
+push local 7
+call Fraction.add 2
+pop local 0
+push local 8
+push argument 0
+call PointVector3D.getXcoord 1
+call Fraction.mult 2
+pop local 1
+push local 1
+push local 9
+push argument 0
+call PointVector3D.getYcoord 1
+call Fraction.mult 2
+call Fraction.add 2
+pop local 1
+push local 1
+push local 10
+push argument 0
+call PointVector3D.getZcoord 1
+call Fraction.mult 2
+call Fraction.add 2
+pop local 1
+push local 1
+push local 11
+call Fraction.add 2
+pop local 1
+push local 12
+push argument 0
+call PointVector3D.getXcoord 1
+call Fraction.mult 2
+pop local 2
+push local 1
+push local 13
+push argument 0
+call PointVector3D.getYcoord 1
+call Fraction.mult 2
+call Fraction.add 2
+pop local 2
+push local 1
+push local 14
+push argument 0
+call PointVector3D.getZcoord 1
+call Fraction.mult 2
+call Fraction.add 2
+pop local 2
+push local 1
+push local 15
+call Fraction.add 2
+pop local 2
+push local 16
+push argument 0
+call PointVector3D.getXcoord 1
+call Fraction.mult 2
+pop local 3
+push local 1
+push local 17
+push argument 0
+call PointVector3D.getYcoord 1
+call Fraction.mult 2
+call Fraction.add 2
+pop local 3
+push local 1
+push local 18
+push argument 0
+call PointVector3D.getZcoord 1
+call Fraction.mult 2
+call Fraction.add 2
+pop local 3
+push local 1
+push local 19
+call Fraction.add 2
+pop local 3
+push local 3
+not
+call Fraction.getDefault 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push local 3
+call Fraction.div 2
+pop local 0
+push local 1
+push local 3
+call Fraction.div 2
+pop local 1
+push local 2
+push local 3
+call Fraction.div 2
+pop local 2
+label IF_FALSE0
+push local 0
+push local 1
+push local 2
+call PointVector3D.new 3
+return
+function Matrix4x4.print 4
+push argument 0
+pop pointer 0
+push constant 0
+pop local 2
+label WHILE_EXP0
+push local 2
+push constant 4
+lt
+not
+if-goto WHILE_END0
+push constant 0
+pop local 3
+push local 2
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 0
+label WHILE_EXP1
+push local 3
+push constant 4
+lt
+not
+if-goto WHILE_END1
+push local 3
+push local 0
+add
+pop pointer 1
+push that 0
+pop local 1
+push constant 1
+call String.new 1
+push constant 40
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push local 1
+call Fraction.print 1
+pop temp 0
+push constant 1
+call String.new 1
+push constant 41
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP1
+label WHILE_END1
+call Output.println 0
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Matrix4x4.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

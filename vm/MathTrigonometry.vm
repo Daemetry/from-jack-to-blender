@@ -1,42 +1,645 @@
-function MathTrigonometry.sin 4
-push argument 0
-push argument 0
-call Fraction.mult 2
-pop local 0
-push local 0
-push argument 0
-call Fraction.mult 2
-pop local 1
-push constant 1
-push constant 6
+function MathTrigonometry.getPI 0
+push constant 355
+push constant 113
 call Fraction.new 2
-pop local 3
-push local 1
-push local 3
-call Fraction.mult 2
-pop local 2
-push argument 0
-push local 2
-call Fraction.sub 2
 return
-function MathTrigonometry.cos 4
-push argument 0
-push argument 0
-call Fraction.mult 2
-pop local 0
+function MathTrigonometry.sin 1
 push constant 1
+pop local 0
+push argument 0
+push constant 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 0
+push constant 1
+neg
+call Math.multiply 2
+pop argument 0
+push constant 1
+neg
+pop local 0
+label IF_FALSE0
+label WHILE_EXP0
+push argument 0
+push constant 360
+lt
+not
+not
+if-goto WHILE_END0
+push argument 0
+push constant 360
+sub
+pop argument 0
+goto WHILE_EXP0
+label WHILE_END0
+push argument 0
+push constant 180
+lt
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 1
+neg
+pop local 0
+push argument 0
+push constant 180
+sub
+pop argument 0
+label IF_FALSE1
+push argument 0
+push constant 90
+lt
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 0
+push constant 90
+sub
+pop argument 0
+label IF_FALSE2
+push argument 0
+push constant 5
+call Math.divide 2
+pop argument 0
+push argument 0
+push constant 5
+call Math.multiply 2
+pop argument 0
+push argument 0
+push constant 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+push constant 0
+call Fraction.new 2
+return
+label IF_FALSE3
+push argument 0
+push constant 5
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push constant 9
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE4
+push argument 0
+push constant 10
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push local 0
+push constant 17
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE5
+push argument 0
+push constant 15
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push local 0
+push constant 26
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE6
+push argument 0
+push constant 20
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push local 0
+push constant 34
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE7
+push argument 0
+push constant 25
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push local 0
+push constant 42
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE8
+push argument 0
+push constant 30
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push local 0
+push constant 1
+call Math.multiply 2
 push constant 2
 call Fraction.new 2
-pop local 2
+return
+label IF_FALSE9
+push argument 0
+push constant 35
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
 push local 0
-push local 2
-call Fraction.mult 2
-pop local 1
-push constant 1
+push constant 57
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE10
+push argument 0
+push constant 40
+eq
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push local 0
+push constant 64
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE11
+push argument 0
+push constant 45
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push local 0
+push constant 71
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE12
+push argument 0
+push constant 50
+eq
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
+push local 0
+push constant 77
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE13
+push argument 0
+push constant 55
+eq
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
+push local 0
+push constant 82
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE14
+push argument 0
+push constant 60
+eq
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
+push local 0
+push constant 87
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE15
+push argument 0
+push constant 65
+eq
+if-goto IF_TRUE16
+goto IF_FALSE16
+label IF_TRUE16
+push local 0
+push constant 91
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE16
+push argument 0
+push constant 70
+eq
+if-goto IF_TRUE17
+goto IF_FALSE17
+label IF_TRUE17
+push local 0
+push constant 94
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE17
+push argument 0
+push constant 75
+eq
+if-goto IF_TRUE18
+goto IF_FALSE18
+label IF_TRUE18
+push local 0
+push constant 97
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE18
+push argument 0
+push constant 80
+eq
+if-goto IF_TRUE19
+goto IF_FALSE19
+label IF_TRUE19
+push local 0
+push constant 98
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE19
+push argument 0
+push constant 85
+eq
+if-goto IF_TRUE20
+goto IF_FALSE20
+label IF_TRUE20
+push local 0
+push constant 99
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE20
+push argument 0
+push constant 90
+eq
+if-goto IF_TRUE21
+goto IF_FALSE21
+label IF_TRUE21
+push local 0
 push constant 1
 call Fraction.new 2
-pop local 3
-push local 3
+return
+label IF_FALSE21
+push constant 1
+call Sys.error 1
+pop temp 0
+push constant 1
+push constant 0
+call Math.divide 2
+return
+function MathTrigonometry.cos 1
+push constant 1
+pop local 0
+push argument 0
+push constant 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 0
+push constant 1
+neg
+call Math.multiply 2
+pop argument 0
+label IF_FALSE0
+label WHILE_EXP0
+push argument 0
+push constant 360
+lt
+not
+not
+if-goto WHILE_END0
+push argument 0
+push constant 360
+sub
+pop argument 0
+goto WHILE_EXP0
+label WHILE_END0
+push argument 0
+push constant 180
+lt
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 1
+neg
+pop local 0
+push argument 0
+push constant 180
+sub
+pop argument 0
+label IF_FALSE1
+push argument 0
+push constant 90
+lt
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 0
+push constant 90
+sub
+pop argument 0
+label IF_FALSE2
+push argument 0
+push constant 5
+call Math.divide 2
+pop argument 0
+push argument 0
+push constant 5
+call Math.multiply 2
+pop argument 0
+push argument 0
+push constant 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+push constant 1
+call Fraction.new 2
+return
+label IF_FALSE3
+push argument 0
+push constant 5
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push constant 99
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE4
+push argument 0
+push constant 10
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push local 0
+push constant 98
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE5
+push argument 0
+push constant 15
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push local 0
+push constant 97
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE6
+push argument 0
+push constant 20
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push local 0
+push constant 94
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE7
+push argument 0
+push constant 25
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push local 0
+push constant 91
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE8
+push argument 0
+push constant 30
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push local 0
+push constant 87
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE9
+push argument 0
+push constant 35
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push local 0
+push constant 82
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE10
+push argument 0
+push constant 40
+eq
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push local 0
+push constant 77
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE11
+push argument 0
+push constant 45
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push local 0
+push constant 71
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE12
+push argument 0
+push constant 50
+eq
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
+push local 0
+push constant 64
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE13
+push argument 0
+push constant 55
+eq
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
+push local 0
+push constant 57
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE14
+push argument 0
+push constant 60
+eq
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
+push local 0
+push constant 1
+call Math.multiply 2
+push constant 2
+call Fraction.new 2
+return
+label IF_FALSE15
+push argument 0
+push constant 65
+eq
+if-goto IF_TRUE16
+goto IF_FALSE16
+label IF_TRUE16
+push local 0
+push constant 42
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE16
+push argument 0
+push constant 70
+eq
+if-goto IF_TRUE17
+goto IF_FALSE17
+label IF_TRUE17
+push local 0
+push constant 34
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE17
+push argument 0
+push constant 75
+eq
+if-goto IF_TRUE18
+goto IF_FALSE18
+label IF_TRUE18
+push local 0
+push constant 26
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE18
+push argument 0
+push constant 80
+eq
+if-goto IF_TRUE19
+goto IF_FALSE19
+label IF_TRUE19
+push local 0
+push constant 17
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE19
+push argument 0
+push constant 85
+eq
+if-goto IF_TRUE20
+goto IF_FALSE20
+label IF_TRUE20
+push local 0
+push constant 9
+call Math.multiply 2
+push constant 100
+call Fraction.new 2
+return
+label IF_FALSE20
+push argument 0
+push constant 90
+eq
+if-goto IF_TRUE21
+goto IF_FALSE21
+label IF_TRUE21
+push constant 0
+push constant 0
+call Fraction.new 2
+return
+label IF_FALSE21
+push constant 1
+call Sys.error 1
+pop temp 0
+push constant 1
+push constant 0
+call Math.divide 2
+return
+function MathTrigonometry.tan 2
+push argument 0
+call MathTrigonometry.sin 1
+pop local 0
+push argument 0
+call MathTrigonometry.cos 1
+pop local 1
+push local 0
 push local 1
-call Fraction.sub 2
+call Fraction.div 2
 return

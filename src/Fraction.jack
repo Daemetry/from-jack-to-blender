@@ -12,7 +12,7 @@ class Fraction{
     constructor Fraction new(int x, int y) {
         if (y = 0)
         {
-            Sys.error(0);
+            do Sys.error(0);
         }
 
         let numerator = x;
@@ -25,7 +25,7 @@ class Fraction{
     {
         if (y = 0)
         {
-            
+            do Sys.error(0);
         }
 
         let numerator = x;

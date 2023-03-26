@@ -54,8 +54,8 @@ class Main
 
         // Shape components
         let cube = Shape.getCubeShape();
-        let segments = cube._getSegments();
-        let segmentsCount = cube._getSegmentsCount();
+        let segments = cube.getSegments();
+        let segmentsCount = cube.getSegmentsCount();
         
         // Other stuff
 
@@ -69,8 +69,8 @@ class Main
         while (i < segmentsCount){
 
             let tempSegment = segments[i];
-            let tempPoint1 = tempSegment._getPoint1();
-            let tempPoint2 = tempSegment._getPoint2();
+            let tempPoint1 = tempSegment.getPoint1();
+            let tempPoint2 = tempSegment.getPoint2();
             
         
             // Rotation 
@@ -97,11 +97,11 @@ class Main
             let scaledPoint2 = scaledPoint2.multY(halfScreenHeight);
 
 
-            let finalX1 = scaledPoint1._getXcoord();
-            let finalY1 = scaledPoint1._getYcoord();
+            let finalX1 = scaledPoint1.getXcoord();
+            let finalY1 = scaledPoint1.getYcoord();
 
-            let finalX2 = scaledPoint2._getXcoord();
-            let finalY2 = scaledPoint2._getYcoord();
+            let finalX2 = scaledPoint2.getXcoord();
+            let finalY2 = scaledPoint2.getYcoord();
 
             // do finalX1.print();
             // do Output.println();

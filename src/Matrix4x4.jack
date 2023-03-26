@@ -123,24 +123,24 @@ class Matrix4x4{
 
         
 
-        let x = m00.mult(inputVector._getXcoord());
-        let x = x.add(m10.mult(inputVector._getYcoord()));
-        let x = x.add(m20.mult(inputVector._getZcoord()));
+        let x = m00.mult(inputVector.getXcoord());
+        let x = x.add(m10.mult(inputVector.getYcoord()));
+        let x = x.add(m20.mult(inputVector.getZcoord()));
         let x = x.add(m30);
 
-        let y = m01.mult(inputVector._getXcoord());
-        let y = y.add(m11.mult(inputVector._getYcoord()));
-        let y = y.add(m21.mult(inputVector._getZcoord()));
+        let y = m01.mult(inputVector.getXcoord());
+        let y = y.add(m11.mult(inputVector.getYcoord()));
+        let y = y.add(m21.mult(inputVector.getZcoord()));
         let y = y.add(m31);
 
-        let z = m02.mult(inputVector._getXcoord());
-        let z = y.add(m12.mult(inputVector._getYcoord()));
-        let z = y.add(m22.mult(inputVector._getZcoord()));
+        let z = m02.mult(inputVector.getXcoord());
+        let z = y.add(m12.mult(inputVector.getYcoord()));
+        let z = y.add(m22.mult(inputVector.getZcoord()));
         let z = y.add(m32);
 
-        let w = m03.mult(inputVector._getXcoord());
-        let w = y.add(m13.mult(inputVector._getYcoord()));
-        let w = y.add(m23.mult(inputVector._getZcoord()));
+        let w = m03.mult(inputVector.getXcoord());
+        let w = y.add(m13.mult(inputVector.getYcoord()));
+        let w = y.add(m23.mult(inputVector.getZcoord()));
         let w = y.add(m33);
 
         if (~ w = Fraction.getDefault()) {

@@ -1,7 +1,27 @@
+function Fraction.getDefault 0
+push constant 0
+push constant 1
+call Fraction.new 2
+return
+function Fraction.getOne 0
+push constant 1
+push constant 1
+call Fraction.new 2
+return
 function Fraction.new 0
 push constant 2
 call Memory.alloc 1
 pop pointer 0
+push argument 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
 push argument 0
 pop this 0
 push argument 1
@@ -15,6 +35,16 @@ function Fraction.newUnreduced 0
 push constant 2
 call Memory.alloc 1
 pop pointer 0
+push argument 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
 push argument 0
 pop this 0
 push argument 1
@@ -54,6 +84,13 @@ call Math.divide 2
 pop this 1
 label IF_FALSE0
 push constant 0
+return
+function Fraction.toInt 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Math.divide 2
 return
 function Fraction.print 0
 push argument 0
@@ -112,6 +149,19 @@ call Fraction.gcd 2
 call Math.divide 2
 push argument 1
 call Math.multiply 2
+return
+function Fraction.isNegative 2
+push argument 0
+call Fraction.getNumerator 1
+pop local 0
+push argument 0
+call Fraction.getDenominator 1
+pop local 1
+push local 0
+push local 1
+call Math.multiply 2
+push constant 0
+lt
 return
 function Fraction.add 2
 push argument 0
@@ -350,4 +400,11 @@ call Fraction.newUnreduced 2
 pop local 0
 push local 0
 call Fraction.sqrt 1
+return
+function Fraction.reverse 0
+push argument 0
+pop pointer 0
+push this 1
+push this 0
+call Fraction.new 2
 return

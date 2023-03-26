@@ -232,4 +232,59 @@ class Shape{
 
         return Shape.new(segments, 31);
     }
+
+    function Shape getPyramid(){
+        var PointVector3D a, b, c, d, e;
+        var Fraction x, y, z;
+        var Segment ab, bc, cd, ad;
+        var Segment ae, be, ce, de;
+        var Array segments;
+
+        let segments = Array.new(8);
+
+        // vertices
+        let x = Fraction.new(100,100);
+        let y = Fraction.new(0,100);
+        let z = Fraction.new(0,100);
+
+        let a = PointVector3D.new(x, y, z);
+
+        let x = Fraction.new(100,100);
+        let y = Fraction.new(100,100);
+        let z = Fraction.new(0,100);
+
+        let b = PointVector3D.new(x, y, z);
+
+        let x = Fraction.new(0,100);
+        let y = Fraction.new(100,100);
+        let z = Fraction.new(0,100);
+
+        let c = PointVector3D.new(x, y, z);
+        
+        let x = Fraction.new(0,100);
+        let y = Fraction.new(0,100);
+        let z = Fraction.new(0,100);
+
+        let d = PointVector3D.new(x, y, z);
+
+        let x = Fraction.new(71,100);
+        let y = Fraction.new(71,100);
+        let z = Fraction.new(100,100);
+
+        let e = PointVector3D.new(x, y, z);
+
+        // edges
+
+        let segments[0] = Segment.new(a,b);
+        let segments[1] = Segment.new(b,c);
+        let segments[2] = Segment.new(c,d);
+        let segments[3] = Segment.new(a,d);
+        
+        let segments[4] = Segment.new(a,e);
+        let segments[5] = Segment.new(b,e);
+        let segments[6] = Segment.new(c,e);
+        let segments[7] = Segment.new(d,e);
+
+        return Shape.new(segments, 8);
+    }
 }

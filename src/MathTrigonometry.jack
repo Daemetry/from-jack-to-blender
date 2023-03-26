@@ -29,7 +29,7 @@ class MathTrigonometry{
         let x = x / 5;
         let x = x * 5;
 
-        if(x = 0) { return Fraction.new(0, 0); }
+        if(x = 0) { return Fraction.getDefault(); }
         if(x = 5){ return Fraction.new(sign * 9, 100); }
         if(x = 10) { return Fraction.new(sign * 17, 100); }
         if(x = 15) { return Fraction.new(sign * 26, 100); }

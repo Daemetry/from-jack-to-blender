@@ -72,75 +72,75 @@ class Shape{
 
         // vertices
 
-        let x = Fraction.new(-2,100);
-        let y = Fraction.new(-179,100);
-        let z = Fraction.new(89,100);
+        let x = Fraction.new(-2, 100);
+        let y = Fraction.new(-179, 100);
+        let z = Fraction.new(89, 100);
 
         let a = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(-171,100);
-        let y = Fraction.new(-54,100);
-        let z = Fraction.new(89,100);
+        let x = Fraction.new(-171, 100);
+        let y = Fraction.new(-54, 100);
+        let z = Fraction.new(89, 100);
 
         let b = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(170,100);
-        let y = Fraction.new(-57,100);
-        let z = Fraction.new(89,100);
+        let x = Fraction.new(170, 100);
+        let y = Fraction.new(-57, 100);
+        let z = Fraction.new(89, 100);
 
         let c = PointVector3D.new(x, y, z);
         
-        let x = Fraction.new(-107,100);
-        let y = Fraction.new(-144,100);
-        let z = Fraction.new(-89,100);
+        let x = Fraction.new(-107, 100);
+        let y = Fraction.new(-144, 100);
+        let z = Fraction.new(-89, 100);
 
         let d = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(171,100);
-        let y = Fraction.new(54,100);
-        let z = Fraction.new(-89,100);
+        let x = Fraction.new(171, 100);
+        let y = Fraction.new(54, 100);
+        let z = Fraction.new(-89, 100);
 
         let e = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(107,100);
-        let y = Fraction.new(144,100);
-        let z = Fraction.new(89,100);
+        let x = Fraction.new(107, 100);
+        let y = Fraction.new(144, 100);
+        let z = Fraction.new(89, 100);
 
         let f = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(-104,100);
-        let y = Fraction.new(146,100);
-        let z = Fraction.new(89,100);
+        let x = Fraction.new(-104, 100);
+        let y = Fraction.new(146, 100);
+        let z = Fraction.new(89, 100);
 
         let g = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(2,100);
-        let y = Fraction.new(179,100);
-        let z = Fraction.new(-89,100);
+        let x = Fraction.new(2, 100);
+        let y = Fraction.new(179, 100);
+        let z = Fraction.new(-89, 100);
 
         let h = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(-170,100);
-        let y = Fraction.new(57,100);
-        let z = Fraction.new(-89,100);
+        let x = Fraction.new(-170, 100);
+        let y = Fraction.new(57, 100);
+        let z = Fraction.new(-89, 100);
 
         let i = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(104,100);
-        let y = Fraction.new(-146,100);
-        let z = Fraction.new(89,100);
+        let x = Fraction.new(104, 100);
+        let y = Fraction.new(-146, 100);
+        let z = Fraction.new(89, 100);
 
         let j = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(0,100);
-        let y = Fraction.new(0,100);
-        let z = Fraction.new(200,100);
+        let x = Fraction.new(0, 100);
+        let y = Fraction.new(0, 100);
+        let z = Fraction.new(200, 100);
 
         let k = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(0,100);
-        let y = Fraction.new(0,100);
-        let z = Fraction.new(-200,100);
+        let x = Fraction.new(0, 100);
+        let y = Fraction.new(0, 100);
+        let z = Fraction.new(-200, 100);
 
         let l = PointVector3D.new(x, y, z);
 

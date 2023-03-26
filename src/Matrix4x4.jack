@@ -1,7 +1,7 @@
 class Matrix4x4{
     field Array rows;
 
-    function Matrix4x4 getRotationZMatrix(Fraction timeValue){
+    function Matrix4x4 getRotationZMatrix(int timeValue){
         var Matrix4x4 result;
         var Fraction cosFr, sinFr;
 
@@ -15,19 +15,21 @@ class Matrix4x4{
         do result.setValue(1, 1, cosFr);                    // cos(t)
         do result.setValue(2, 2, Fraction.getOne());        // 1
         do result.setValue(3, 3, Fraction.getOne());        // 1
+    
+        // do cosFr.dispose();
+        // do sinFr.dispose();
 
         return result;
     }
 
-    function Matrix4x4 getRotationXMatrix(Fraction timeValue){
+    function Matrix4x4 getRotationXMatrix(int timeValue){
         var Matrix4x4 result;
-        var Fraction halfTimeValue, cosFr, sinFr;
+        var Fraction cosFr, sinFr;
 
         let result = Matrix4x4.new();
-        let halfTimeValue = timeValue.mult(Fraction.new(1, 2));
 
-        let cosFr = MathTrigonometry.cos(halfTimeValue);
-        let sinFr = MathTrigonometry.sin(halfTimeValue);
+        let cosFr = MathTrigonometry.cos(timeValue);
+        let sinFr = MathTrigonometry.sin(timeValue);
 
         do result.setValue(0, 0, Fraction.getOne());            // 1
         do result.setValue(1, 1, cosFr);                        // cos(t/2)
@@ -35,6 +37,9 @@ class Matrix4x4{
         do result.setValue(2, 1, sinFr.multInt(-1));            // -sin(t/2)
         do result.setValue(2, 2, cosFr);                        // cos(t/2)
         do result.setValue(3, 3, Fraction.getOne());            // 1
+
+        // do cosFr.dispose();
+        // do sinFr.dispose();
 
         return result;
     }

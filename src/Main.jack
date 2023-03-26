@@ -2,37 +2,36 @@ class Main
 {
     function void main()
     {
-        var Render render;
         var int cameraYPos;
+        var Shape cube, cosahedron, currentShape, pyramid;
+        var int screenWidth, screenHeight;
 
-        var Shape cube, cosahedron, currentShape;
 
-        let render = Render.new();
+        let screenHeight = 256;
+        let screenWidth = 512;
 
         let cube = Shape.getCubeShape();
         let cosahedron = Shape.getIcosahedron();
+        let pyramid = Shape.getPyramid();
         
-        let currentShape = cube;
+        let currentShape = pyramid;
 
         let cameraYPos = 0;
-        do render.renderShape(currentShape, cameraYPos);
+        do Render.renderShape(currentShape, cameraYPos, screenWidth, screenHeight);
 
-        // while (true){
-        //     if (Keyboard.keyPressed() = 132){
-        //         let cameraYPos = cameraYPos - 1;
-        //         do Screen.clearScreen();
-        //         do render.renderShape(currentShape, cameraYPos);
-        //     }
+        while (true){
+            if (Keyboard.keyPressed() = 132){
+                let cameraYPos = cameraYPos - 1;
+                do Screen.clearScreen();
+                do Render.renderShape(currentShape, cameraYPos, screenWidth, screenHeight);
+            }
 
-        //     if (Keyboard.keyPressed() = 130){
-        //         let cameraYPos = cameraYPos + 1;
-        //         do Screen.clearScreen();
-        //         do render.renderShape(currentShape, cameraYPos);
-        //     }
-        // }
-
-        do render.dispose();
-
+            if (Keyboard.keyPressed() = 130){
+                let cameraYPos = cameraYPos + 1;
+                do Screen.clearScreen();
+                do Render.renderShape(currentShape, cameraYPos, screenWidth, screenHeight);
+            }
+        }
 
         return;
     }

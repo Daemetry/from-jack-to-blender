@@ -132,15 +132,15 @@ class Shape{
 
         let j = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(0, 100);
-        let y = Fraction.new(0, 100);
-        let z = Fraction.new(200, 100);
+        let x = Fraction.new(0, 1);
+        let y = Fraction.new(0, 1);
+        let z = Fraction.new(2, 1);
 
         let k = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(0, 100);
-        let y = Fraction.new(0, 100);
-        let z = Fraction.new(-200, 100);
+        let x = Fraction.new(0, 1);
+        let y = Fraction.new(0, 1);
+        let z = Fraction.new(-2, 1);
 
         let l = PointVector3D.new(x, y, z);
 
@@ -243,33 +243,33 @@ class Shape{
         let segments = Array.new(8);
 
         // vertices
-        let x = Fraction.new(100,100);
-        let y = Fraction.new(0,100);
-        let z = Fraction.new(0,100);
+        let x = Fraction.new(1, 1);
+        let y = Fraction.new(0, 1);
+        let z = Fraction.new(0, 1);
 
         let a = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(100,100);
-        let y = Fraction.new(100,100);
-        let z = Fraction.new(0,100);
+        let x = Fraction.new(1, 1);
+        let y = Fraction.new(1, 1);
+        let z = Fraction.new(0, 1);
 
         let b = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(0,100);
-        let y = Fraction.new(100,100);
-        let z = Fraction.new(0,100);
+        let x = Fraction.new(0, 1);
+        let y = Fraction.new(1, 1);
+        let z = Fraction.new(0, 1);
 
         let c = PointVector3D.new(x, y, z);
         
-        let x = Fraction.new(0,100);
-        let y = Fraction.new(0,100);
-        let z = Fraction.new(0,100);
+        let x = Fraction.new(0, 1);
+        let y = Fraction.new(0, 1);
+        let z = Fraction.new(0, 1);
 
         let d = PointVector3D.new(x, y, z);
 
         let x = Fraction.new(71,100);
         let y = Fraction.new(71,100);
-        let z = Fraction.new(100,100);
+        let z = Fraction.new(1, 1);
 
         let e = PointVector3D.new(x, y, z);
 

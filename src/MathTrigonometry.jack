@@ -4,7 +4,6 @@ class MathTrigonometry{
         return Fraction.new(355, 113);
     }
 
-
     function Fraction sin(int x){
         var int sign;
         let sign = 1;

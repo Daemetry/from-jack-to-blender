@@ -117,23 +117,37 @@ class PointVector3D
     /** Multiplies the x coordinate of this by value and creates a new object */
     method PointVector3D multX(int value) {
         var Fraction newXValue;
-        let newXValue = value.multInt(x);
+        let newXValue = x.multInt(value);
         return PointVector3D.new(newXValue, y, z);
     }
 
     /** Multiplies the y coordinate of this by value and creates a new object */
     method PointVector3D multY(int value) {
         var Fraction newYValue;
-        let newYValue = value.multInt(y);
+        let newYValue = y.multInt(value);
         return PointVector3D.new(x, newYValue, z);
     }
 
     /** Multiplies the z coordinate of this by value and creates a new object */
     method PointVector3D multZ(int value) {
         var Fraction newZValue;
-        let newZValue = value.multInt(z);
+        let newZValue = z.multInt(value);
         return PointVector3D.new(x, y, newZValue);
     }
+
+    method void print(){
+        do Output.printString("(");
+        do x.print();
+        do Output.printString(",");
+        do Output.printString(" ");
+        do y.print();
+        do Output.printString(",");
+        do Output.printString(" ");
+        do z.print();
+        do Output.printString(")");
+        return;
+    }
+
 
     method void Dispose()
     {

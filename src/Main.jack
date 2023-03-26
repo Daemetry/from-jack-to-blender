@@ -2,24 +2,37 @@ class Main
 {
     function void main()
     {
-        var int i, timeValue, segmentsCount; // Some time value
+        var int i;
+        var Fraction timeValue;
+
         var int screenWidth, screenHeight, halfScreenWidth, halfScreenHeight;
         var Fraction fNear, fFar, fFov, fAspectRatio, fFovRad;
-        var Matrix4x4 projectionMatrix, getRotationZMatrix, getRotationXMatrix;
-        var Shape cube;
-        var Segment tempSegment, translatedTempSegment;
-        var Array segments;
 
+        var Matrix4x4 projectionMatrix;
+        var Matrix4x4 getRotationZMatrix;
+        var Matrix4x4  getRotationXMatrix;
+
+        var Shape cube;
+        var Array segments;
+        var int segmentsCount;
+
+
+        var Segment tempSegment, translatedTempSegment;
         var PointVector3D tempPoint1, tempPoint2;
         var PointVector3D translatedPoint1, translatedPoint2;
         var PointVector3D projectedPoint1, projectedPoint2;
         var PointVector3D scaledPoint1, scaledPoint2;
-        
         var Fraction finalX1, finalX2, finalY1, finalY2;
 
 
-        let timeValue = 1;
+        var PointVector3D xySingleVector, offsetVector;
+        var Fraction three;
 
+
+
+        let timeValue = Fraction.new(1, 1);
+
+        // Screen options
         let screenWidth = 512;
         let screenHeight = 256;
 
@@ -32,15 +45,28 @@ class Main
         let fAspectRatio = Fraction.new(screenWidth, screenHeight);
         let fFovRad = Extensions.computefFovRad(fFov);
 
+
+        // Matrixes
         let projectionMatrix = Matrix4x4.getProjectionMatrix(fNear, fFar, fFov, fAspectRatio, fFovRad);
         let getRotationZMatrix = Matrix4x4.getRotationZMatrix(timeValue);
         let getRotationXMatrix = Matrix4x4.getRotationXMatrix(timeValue);
 
-        let cube = ShapeCollection.getCubeShape();
+
+        // Shape components
+        let cube = Shape.getCubeShape();
         let segments = cube._getSegments();
         let segmentsCount = cube._getSegmentsCount();
+        
+        // Other stuff
+
+
+        let three = Fraction.new(3, 1);
+        let xySingleVector = PointVector3D.new(Fraction.getOne(), Fraction.getOne(), Fraction.getDefault());
+        let offsetVector = PointVector3D.new(Fraction.getDefault(), Fraction.getDefault(), three);
+
+
         let i = 0;
-        while (i < cube._getSegmentsCount()){
+        while (i < segmentsCount){
 
             let tempSegment = segments[i];
             let tempPoint1 = tempSegment._getPoint1();
@@ -51,21 +77,18 @@ class Main
 
             // Offset into the screen
 
-            let translatedPoint1 = tempPoint1.addToZ(3);
-            let translatedPoint2 = tempPoint2.addToZ(3);
+            let translatedPoint1 = tempPoint1.vectorAdd(offsetVector);
+            let translatedPoint2 = tempPoint2.vectorAdd(offsetVector);
 
             // Project triangles from 3D --> 2D
             let projectedPoint1 = Matrix4x4.multiplyMatrixVector(translatedPoint1, projectionMatrix);
-            let projectedPoint2 =  Matrix4x4.multiplyMatrixVector(translatedPoint2, projectionMatrix);
-
+            let projectedPoint2 = Matrix4x4.multiplyMatrixVector(translatedPoint2, projectionMatrix);
 
             // Scale into view
-            let scaledPoint1 = projectedPoint1.addToX(1);
-            let scaledPoint1 = scaledPoint1.addToY(1);
 
-            let scaledPoint2 = projectedPoint2.addToX(1);
-            let scaledPoint2 = scaledPoint2.addToY(1);
 
+            let scaledPoint1 = projectedPoint1.vectorAdd(xySingleVector);
+            let scaledPoint2 = projectedPoint2.vectorAdd(xySingleVector);
 
             let scaledPoint1 = scaledPoint1.multX(halfScreenWidth);
             let scaledPoint1 = scaledPoint1.multY(halfScreenHeight);
@@ -80,8 +103,20 @@ class Main
             let finalX2 = scaledPoint2._getXcoord();
             let finalY2 = scaledPoint2._getYcoord();
 
-            do Output.drawLine(finalX1.toInt(), finalY1.toInt(), finalX2.toInt(), finalY2.toInt());
+            // do finalX1.print();
+            // do Output.println();
 
+            // do finalY1.print();
+            // do Output.println();
+
+            // do finalX2.print();
+            // do Output.println();
+
+            // do finalY2.print();
+            // do Output.println();
+
+            do Screen.setColor(true);
+            do Screen.drawLine(finalX1.toInt(), finalY1.toInt(), finalX2.toInt(), finalY2.toInt());
 
             let i = i + 1;
         }

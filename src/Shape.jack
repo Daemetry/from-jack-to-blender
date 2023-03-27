@@ -243,33 +243,33 @@ class Shape{
         let segments = Array.new(8);
 
         // vertices
-        let x = Fraction.new(1, 1);
-        let y = Fraction.new(0, 1);
-        let z = Fraction.new(0, 1);
+        let x = Fraction.new(0, 100);
+        let y = Fraction.new(0, 100);
+        let z = Fraction.new(100, 100);
 
         let a = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(1, 1);
-        let y = Fraction.new(1, 1);
-        let z = Fraction.new(0, 1);
+        let x = Fraction.new(100, 100);
+        let y = Fraction.new(0, 100);
+        let z = Fraction.new(100, 100);
 
         let b = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(0, 1);
-        let y = Fraction.new(1, 1);
-        let z = Fraction.new(0, 1);
+        let x = Fraction.new(100, 100);
+        let y = Fraction.new(0, 100);
+        let z = Fraction.new(0, 100);
 
         let c = PointVector3D.new(x, y, z);
         
-        let x = Fraction.new(0, 1);
-        let y = Fraction.new(0, 1);
-        let z = Fraction.new(0, 1);
+        let x = Fraction.new(0, 100);
+        let y = Fraction.new(0, 100);
+        let z = Fraction.new(0, 100);
 
         let d = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(71,100);
-        let y = Fraction.new(71,100);
-        let z = Fraction.new(1, 1);
+        let x = Fraction.new(200,100);
+        let y = Fraction.new(100,100);
+        let z = Fraction.new(150, 100);
 
         let e = PointVector3D.new(x, y, z);
 

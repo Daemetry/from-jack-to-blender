@@ -10,4 +10,6 @@ to realise some kind of bigger int, at least int32, mb
 
 5. The camera class
 6. The 3D-figure class - DONE!
-7. A way to store and display render data
+7. A way to store and display render data - DONE!
+
+Hurray, everything's working! Well, not "everything", but for most part...

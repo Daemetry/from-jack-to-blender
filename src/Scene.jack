@@ -1,0 +1,476 @@
+class Scene{
+    field Shape shape;
+    field int cameraYPos, cameraXPos, cameraZPos;
+    field int screenWidth, screenHeight;
+
+    method void setShape(Shape value) { let shape = value; return; }
+
+    method void setCameraZPos(int value){ let cameraZPos = value; return; }
+    method void setCameraYPos(int value){ let cameraYPos = value; return; }
+    method void setCameraXPos(int value){ let cameraXPos = value; return; }
+
+    constructor Scene new(Shape s, int camYPos, int camXPos, int camZPos, int scrWidth, int scrHeight){
+        let shape = s;
+        let cameraYPos = camYPos;
+        let cameraXPos = camXPos;
+        let cameraZPos = camZPos;
+        let screenWidth = scrWidth;
+        let screenHeight = scrHeight;
+
+        return this;
+    }
+
+    // method void render(){
+    //     var int i, segCount;
+
+    //     var Fraction numerator, denominator1, denominator2, t1, t2; 
+    //     var Fraction coordX1, coordY1, coordX2, coordY2, tempFrac, lengthSqr;
+
+    //     var PointVector3D camera, tempPoint; 
+    //     var PointVector3D screenSide, screenBottom, screenStart, screenNormal;
+    //     var PointVector3D ray1, ray2, screenPoint1, screenPoint2; 
+
+    //     var Fraction cameraX, cameraY, cameraZ;
+    //     var Fraction screenStartX, screenStartY, screenStartZ;
+    //     var Fraction screenBottomX, screenBottomY, screenBottomZ;
+    //     var Fraction screenSideX, screenSideY, screenSideZ;
+
+    //     var Array sides;
+    //     var Segment side;
+
+    //     // Show shape name
+    //     do Screen.setColor(true);
+    //     do Output.moveCursor(0, 0);
+    //     do Output.printString(shape.getName());
+
+    //     // Setup camera
+    //     let cameraX = Fraction.newUnreduced(cameraXPos, 1);
+    //     let cameraY = Fraction.newUnreduced(cameraYPos, 1);
+    //     let cameraZ = Fraction.newUnreduced(cameraZPos, 1);
+
+    //     let camera = PointVector3D.new(cameraX, cameraY, cameraZ);
+
+    //     do cameraX.dispose(); do cameraY.dispose(); do cameraZ.dispose();
+
+    //     // Setup screen start
+
+    //     let screenStartX = Fraction.newUnreduced(-2, 1);
+    //     let screenStartY = Fraction.newUnreduced(2, 1);
+    //     let screenStartZ =  Fraction.newUnreduced(-1, 1);
+
+    //     do screenStartX.dispose(); do screenStartY.dispose(); do screenStartZ.dispose();
+
+    //     let screenStart = PointVector3D.new(screenStartX, screenStartY, screenStartZ);
+
+    //     // Setup screen bottom
+
+    //     let screenBottomX = Fraction.getDefault();
+    //     let screenBottomY = Fraction.newUnreduced(-4, 1);
+    //     let screenBottomZ =  Fraction.getDefault();
+
+    //     do screenBottomX.dispose(); do screenBottomY.dispose(); do screenBottomZ.dispose();
+
+    //     let screenBottom = PointVector3D.new(screenBottomX, screenBottomY, screenBottomZ);
+
+    //     // Setup screen side
+
+    //     let screenSideX = Fraction.getDefault();
+    //     let screenSideY = Fraction.getDefault();
+    //     let screenSideZ =  Fraction.newUnreduced(2, 1);
+
+    //     do screenSideX.dispose(); do screenSideY.dispose(); do screenSideZ.dispose();
+
+    //     let screenSide = PointVector3D.new(screenSideX, screenSideY, screenSideZ);
+        
+    //     let screenNormal = screenBottom .crossProduct (screenSide);
+
+
+    //     let tempPoint = screenStart .vectorSub (camera);
+    //     let numerator = tempPoint .dotProduct (screenNormal);
+
+    //     do tempPoint.dispose();
+    
+    //     let sides = shape.getSegments();
+    //     let i = 0;
+    //     let segCount = shape.getSegmentsCount();
+
+    //    while (i < shape.getSegmentsCount())
+    //     {
+
+    //         let side = sides[i];
+
+    //         // Проводим прямую, соединяющую камеру и точку отрезка
+    //         // и находим её проекцию на плоскость экрана.
+
+    //         // let tempPoint = side.getPoint1();
+    //         // let ray1 = tempPoint .vectorSub (camera);
+    //         // do tempPoint.dispose();
+    //         // let denominator1 = ray1 .dotProduct (screenNormal);
+    //         // do ray1.dispose();
+
+
+    //         // let tempPoint = side.getPoint2();
+    //         // let ray2 = tempPoint .vectorSub (camera);
+    //         // do tempPoint.dispose();
+    //         // let denominator2 = ray2 .dotProduct (screenNormal);
+    //         // do ray2.dispose();
+
+    //         let ray1 = side.getPoint1();
+    //         let ray1 = ray1 .vectorSub (camera);
+    //         let denominator1 = ray1 .dotProduct (screenNormal);
+
+    //         let ray2 = side.getPoint2();
+    //         let ray2 = ray2 .vectorSub (camera);
+    //         let denominator2 = ray2 .dotProduct (screenNormal);
+
+    //         let t1 = numerator .div (denominator1);
+    //         let t2 = numerator .div (denominator2);
+
+    //         do denominator1.dispose(); 
+    //         do denominator2.dispose();
+
+    //         let tempPoint = ray1 .fracMult (t1);
+    //         let screenPoint1 = camera .vectorAdd (tempPoint);
+    //         do tempPoint.dispose();
+    //         let tempPoint = screenPoint1;
+    //         let screenPoint1 = tempPoint .vectorSub (screenStart);
+    //         do tempPoint.dispose();
+    //         do t1.dispose();
+
+    //         let tempPoint = ray2 .fracMult (t2);
+    //         let screenPoint2 = camera .vectorAdd (tempPoint);
+    //         do tempPoint.dispose();
+
+    //         let tempPoint = screenPoint2;
+    //         let screenPoint2 = tempPoint .vectorSub (screenStart);
+    //         do tempPoint.dispose();
+    //         do t2.dispose();
+
+    //         // Далее получаем координаты полученных точек в базисе сторон экрана,
+    //         // чтобы проверить, лежат ли они в пределах экрана и получить соответствующие им пиксели
+    //         let lengthSqr = screenBottom .dotProduct (screenBottom);
+            
+    //         let tempFrac = screenBottom .dotProduct (screenPoint1);
+    //         let coordX1 = tempFrac .div (lengthSqr);
+    //         do tempFrac.dispose();
+
+    //         let tempFrac = screenBottom .dotProduct (screenPoint2);
+    //         let coordX2 = tempFrac .div (lengthSqr);
+
+    //         do tempFrac.dispose();
+    //         do lengthSqr.dispose();
+
+    //         let lengthSqr = screenSide .dotProduct (screenSide);
+
+    //         let tempFrac = screenSide .dotProduct (screenPoint1);
+    //         let coordY1 = tempFrac .div (lengthSqr);
+    //         do tempFrac.dispose();
+
+    //         let tempFrac = screenSide .dotProduct (screenPoint2);
+    //         let coordY2 = tempFrac .div (lengthSqr);
+    //         do tempFrac.dispose();
+
+    //         do lengthSqr.dispose();
+
+    //         // проверка на то, лежит ли точка в экране, производится через смешанное произведение
+            
+
+            
+    //         let tempFrac = coordX1;
+    //         do coordX1.dispose();
+    //         let coordX1 = tempFrac .multInt (screenWidth);
+    //         do tempFrac.dispose();
+
+    //         let tempFrac = coordX2;
+    //         do coordX2.dispose();
+    //         let coordX2 = tempFrac .multInt (screenWidth);
+    //         do tempFrac.dispose();
+
+    //         let tempFrac = coordY1;
+    //         do coordY1.dispose();
+    //         let coordY1 = tempFrac .multInt (screenHeight);
+    //         do tempFrac.dispose();
+
+    //         let tempFrac = coordY2;
+    //         do coordY2.dispose();
+    //         let coordY2 = tempFrac .multInt (screenHeight);
+    //         do tempFrac.dispose();
+
+    //         if ((coordX1.toInt() > -1) & (coordX1.toInt() < screenWidth) & 
+    //             (coordX2.toInt() > -1) & (coordX2.toInt() < screenWidth) & 
+    //             (coordY1.toInt() > -1) & (coordY1.toInt() < screenHeight) & 
+    //             (coordY2.toInt() > -1) & (coordY2.toInt() < screenHeight)){
+
+    //                 do Screen.drawLine( 
+    //                     coordX1.toInt(), coordY1.toInt(),
+    //                     coordX2.toInt(), coordY2.toInt());
+
+    //             }
+
+    //         do ray1.dispose(); 
+    //         do ray2.dispose();
+
+    //         do screenPoint1.dispose(); 
+    //         do screenPoint2.dispose();
+
+    //         do coordX1.dispose(); 
+    //         do coordX2.dispose();
+
+    //         do coordY1.dispose(); 
+    //         do coordY2.dispose();
+    //         let i = i + 1;
+    //     }
+
+    //     do numerator.dispose();
+
+    //     do camera.dispose();
+        
+    //     do screenSide.dispose();
+    //     do screenBottom.dispose();
+    //     do screenStart.dispose();
+    //     do screenNormal.dispose();
+
+    //     return;
+    // }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    method void render(){
+        var int i, segCount;
+
+        var Fraction numerator, denominator1, denominator2, t1, t2; 
+        var Fraction coordX1, coordY1, coordX2, coordY2, tempFrac, lengthSqr;
+
+        var PointVector3D camera, tempPoint; 
+        var PointVector3D screenSide, screenBottom, screenStart, screenNormal;
+        var PointVector3D ray1, ray2, screenPoint1, screenPoint2; 
+
+        var Fraction cameraX, cameraY, cameraZ;
+        var Fraction screenStartX, screenStartY, screenStartZ;
+        var Fraction screenBottomX, screenBottomY, screenBottomZ;
+        var Fraction screenSideX, screenSideY, screenSideZ;
+
+        var Array sides;
+        var Segment side;
+
+        // Show shape name
+        do Screen.setColor(true);
+        do Output.moveCursor(1, 1);
+        do Output.printString(shape.getName());
+        
+        let camera = PointVector3D.new( Fraction.newUnreduced(cameraXPos, 1), Fraction.newUnreduced(cameraYPos, 2), Fraction.getDefault() );
+
+        // Setup camera
+        // let cameraX = Fraction.newUnreduced(cameraXPos, 1);
+        // let cameraY = Fraction.newUnreduced(cameraYPos, 1);
+        // let cameraZ = Fraction.newUnreduced(cameraZPos, 1);
+
+        // let camera = PointVector3D.new(cameraX, cameraY, cameraZ);
+
+        // do cameraX.dispose(); do cameraY.dispose(); do cameraZ.dispose();
+
+
+        let screenStart = PointVector3D.new( Fraction.newUnreduced(-2, 1), Fraction.newUnreduced(2, 1), Fraction.newUnreduced(-1, 1) );
+        let screenBottom = PointVector3D.new( Fraction.getDefault(), Fraction.newUnreduced(-4, 1), Fraction.getDefault() );
+        let screenSide = PointVector3D.new( Fraction.getDefault(), Fraction.getDefault(), Fraction.newUnreduced(2, 1) );
+        
+        
+        let screenNormal = screenBottom .crossProduct (screenSide);
+        let tempPoint = screenStart .vectorSub (camera);
+        let numerator = tempPoint .dotProduct (screenNormal);
+
+        do tempPoint.dispose();
+    
+        let sides = shape.getSegments();
+        let i = 0;
+        let segCount = shape.getSegmentsCount();
+
+
+        while (i < segCount)
+        {
+
+            let side = sides[i];
+
+            // Проводим прямую, соединяющую камеру и точку отрезка
+            // и находим её проекцию на плоскость экрана.
+
+
+            // let tempPoint = side.getPoint1();
+            // let ray1 = tempPoint .vectorSub (camera);
+            // do tempPoint.dispose();
+            // let denominator1 = ray1 .dotProduct (screenNormal);
+            // do ray1.dispose();
+
+
+            // let tempPoint = side.getPoint2();
+            // let ray2 = tempPoint .vectorSub (camera);
+            // do tempPoint.dispose();
+            // let denominator2 = ray2 .dotProduct (screenNormal);
+            // do ray2.dispose();
+
+
+
+            let ray1 = side.getPoint1();
+            let ray1 = ray1 .vectorSub (camera);
+            let denominator1 = ray1 .dotProduct (screenNormal);
+
+            let ray2 = side.getPoint2();
+            let ray2 = ray2 .vectorSub (camera);
+            let denominator2 = ray2 .dotProduct (screenNormal);
+
+            let t1 = numerator .div (denominator1);
+            let t2 = numerator .div (denominator2);
+
+            do denominator1.dispose(); 
+            do denominator2.dispose();
+
+            let tempPoint = ray1 .fracMult (t1);
+            let screenPoint1 = camera .vectorAdd (tempPoint);
+            do tempPoint.dispose();
+            let tempPoint = screenPoint1;
+            let screenPoint1 = tempPoint .vectorSub (screenStart);
+            do tempPoint.dispose();
+            do t1.dispose();
+
+            let tempPoint = ray2 .fracMult (t2);
+            let screenPoint2 = camera .vectorAdd (tempPoint);
+            do tempPoint.dispose();
+
+            let tempPoint = screenPoint2;
+            let screenPoint2 = tempPoint .vectorSub (screenStart);
+            do tempPoint.dispose();
+            do t2.dispose();
+
+            // Далее получаем координаты полученных точек в базисе сторон экрана,
+            // чтобы проверить, лежат ли они в пределах экрана и получить соответствующие им пиксели
+            let lengthSqr = screenBottom .dotProduct (screenBottom);
+            
+            let tempFrac = screenBottom .dotProduct (screenPoint1);
+            let coordX1 = tempFrac .div (lengthSqr);
+            do tempFrac.dispose();
+
+            let tempFrac = screenBottom .dotProduct (screenPoint2);
+            let coordX2 = tempFrac .div (lengthSqr);
+
+            do tempFrac.dispose();
+            do lengthSqr.dispose();
+
+            let lengthSqr = screenSide .dotProduct (screenSide);
+
+            let tempFrac = screenSide .dotProduct (screenPoint1);
+            let coordY1 = tempFrac .div (lengthSqr);
+            do tempFrac.dispose();
+
+            let tempFrac = screenSide .dotProduct (screenPoint2);
+            let coordY2 = tempFrac .div (lengthSqr);
+            do tempFrac.dispose();
+
+            do lengthSqr.dispose();
+
+            // проверка на то, лежит ли точка в экране, производится через смешанное произведение
+            
+
+            
+            let tempFrac = coordX1;
+            do coordX1.dispose();
+            let coordX1 = tempFrac .multInt (screenWidth);
+            do tempFrac.dispose();
+
+            let tempFrac = coordX2;
+            do coordX2.dispose();
+            let coordX2 = tempFrac .multInt (screenWidth);
+            do tempFrac.dispose();
+
+            let tempFrac = coordY1;
+            do coordY1.dispose();
+            let coordY1 = tempFrac .multInt (screenHeight);
+            do tempFrac.dispose();
+
+            let tempFrac = coordY2;
+            do coordY2.dispose();
+            let coordY2 = tempFrac .multInt (screenHeight);
+            do tempFrac.dispose();
+
+            if ((coordX1.toInt() > -1) & (coordX1.toInt() < screenWidth) & 
+                (coordX2.toInt() > -1) & (coordX2.toInt() < screenWidth) & 
+                (coordY1.toInt() > -1) & (coordY1.toInt() < screenHeight) & 
+                (coordY2.toInt() > -1) & (coordY2.toInt() < screenHeight)){
+
+                    do Screen.drawLine( 
+                        coordX1.toInt(), coordY1.toInt(),
+                        coordX2.toInt(), coordY2.toInt());
+
+                }
+
+            do ray1.dispose(); 
+            do ray2.dispose();
+
+            do screenPoint1.dispose(); 
+            do screenPoint2.dispose();
+
+            do coordX1.dispose(); 
+            do coordX2.dispose();
+
+            do coordY1.dispose(); 
+            do coordY2.dispose();
+            let i = i + 1;
+        }
+
+        do camera.dispose();
+        do numerator.dispose();
+        
+        do screenSide.dispose();
+        do screenBottom.dispose();
+        do screenStart.dispose();
+        do screenNormal.dispose();
+
+        return;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+}

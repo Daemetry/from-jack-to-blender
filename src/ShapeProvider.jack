@@ -1,41 +1,44 @@
-class Shape{
-    field Array segments;
-    field int segmentsCount;
-    field String name;
+class ShapeProvider{
+    function Array getAllShapes(){
+        var Array result;
+        
+        let result = Array.new(4);
 
-    method Array getSegments() { return segments; }
-    method int getSegmentsCount() { return segmentsCount; }
-    method String getName() { return name; }
+        let result[0] = ShapeProvider.getCubeShape();
+        let result[1] = ShapeProvider.getRectangle();
+        let result[2] = ShapeProvider.getIcosahedron();
+        let result[3] = ShapeProvider.getPyramid();
 
-    constructor Shape new(Array arr, int size, String title){
-        let segmentsCount = size;
-        let segments = arr;
-        let name = title;
-        return this;
+        return result;
     }
-    
-    method void dispose(){
-        do Memory.deAlloc(this);
-        return;
+
+    function Shape getTestShape(){
+        var Array segments;
+
+        let segments = Array.new(1);
+
+        let segments[0] = Segment.new(
+            PointVector3D.newInt(0, 0, 0), 
+            PointVector3D.newInt(0, 1, 0)
+        );
+
+        return Shape.new(segments, 1, "Test Shape");
     }
 
     function Shape getCubeShape(){
         var PointVector3D p000, p010, p001, p011, p100, p101, p111, p110;
-        var Fraction zeroFraction, oneFraction;
         var Array segments;
 
         let segments = Array.new(12);
-        let zeroFraction = Fraction.new(0, 1);
-        let oneFraction = Fraction.new(1, 1);
 
-        let p000 = PointVector3D.new(zeroFraction, zeroFraction, zeroFraction);
-        let p010 = PointVector3D.new(zeroFraction, oneFraction, zeroFraction);
-        let p001 = PointVector3D.new(zeroFraction, zeroFraction, oneFraction);
-        let p011 = PointVector3D.new(zeroFraction, oneFraction, oneFraction);
-        let p100 = PointVector3D.new(oneFraction, zeroFraction, zeroFraction);
-        let p101 = PointVector3D.new(oneFraction, zeroFraction, oneFraction);
-        let p111 = PointVector3D.new(oneFraction, oneFraction, oneFraction);
-        let p110 = PointVector3D.new(oneFraction, oneFraction, zeroFraction);
+        let p000 = PointVector3D.newInt(0, 0, 0);
+        let p010 = PointVector3D.newInt(0, 1, 0);
+        let p001 = PointVector3D.newInt(0, 0, 1);
+        let p011 = PointVector3D.newInt(0, 1, 1);
+        let p100 = PointVector3D.newInt(1, 0, 0);
+        let p101 = PointVector3D.newInt(1, 0, 1);
+        let p111 = PointVector3D.newInt(1, 1, 1);
+        let p110 = PointVector3D.newInt(1, 1, 0);
 
         let segments[0] = Segment.new(p000, p010);
         let segments[1] = Segment.new(p000, p001);
@@ -50,7 +53,7 @@ class Shape{
         let segments[10] = Segment.new(p100, p110);
         let segments[11] = Segment.new(p100, p101);
 
-        return Shape.new(segments, 12);
+        return Shape.new(segments, 12, "Cube");
     } 
 
     function Shape getIcosahedron(){
@@ -232,7 +235,7 @@ class Shape{
         let segments[29] = lj;
         let segments[30] = le;
 
-        return Shape.new(segments, 31);
+        return Shape.new(segments, 31, "Icosahedron");
     }
 
     function Shape getPyramid(){
@@ -245,33 +248,33 @@ class Shape{
         let segments = Array.new(8);
 
         // vertices
-        let x = Fraction.new(0, 100);
-        let y = Fraction.new(0, 100);
-        let z = Fraction.new(100, 100);
+        let x = Fraction.new(1, 1);
+        let y = Fraction.new(0, 1);
+        let z = Fraction.new(0, 1);
 
         let a = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(100, 100);
-        let y = Fraction.new(0, 100);
-        let z = Fraction.new(100, 100);
+        let x = Fraction.new(1, 1);
+        let y = Fraction.new(1, 1);
+        let z = Fraction.new(0, 1);
 
         let b = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(100, 100);
-        let y = Fraction.new(0, 100);
-        let z = Fraction.new(0, 100);
+        let x = Fraction.new(0, 1);
+        let y = Fraction.new(1, 1);
+        let z = Fraction.new(0, 1);
 
         let c = PointVector3D.new(x, y, z);
         
-        let x = Fraction.new(0, 100);
-        let y = Fraction.new(0, 100);
-        let z = Fraction.new(0, 100);
+        let x = Fraction.new(0, 1);
+        let y = Fraction.new(0, 1);
+        let z = Fraction.new(0, 1);
 
         let d = PointVector3D.new(x, y, z);
 
-        let x = Fraction.new(200,100);
-        let y = Fraction.new(100,100);
-        let z = Fraction.new(150, 100);
+        let x = Fraction.new(71,100);
+        let y = Fraction.new(71,100);
+        let z = Fraction.new(1, 1);
 
         let e = PointVector3D.new(x, y, z);
 
@@ -287,6 +290,115 @@ class Shape{
         let segments[6] = Segment.new(c,e);
         let segments[7] = Segment.new(d,e);
 
-        return Shape.new(segments, 8);
+        return Shape.new(segments, 8, "Pyramid");
+    }
+
+    function Shape getRectangle(){
+        var PointVector3D p000, p010, p100, p110;
+        var PointVector3D p002, p012,  p102, p112;
+        var Array segments;
+
+        let segments = Array.new(12);
+
+        let p000 = PointVector3D.newInt(0, 0, 0);
+        let p010 = PointVector3D.newInt(0, 1, 0);
+        let p100 = PointVector3D.newInt(1, 0, 0);
+        let p110 = PointVector3D.newInt(1, 1, 0);
+        
+
+        let p002 = PointVector3D.newInt(0, 0, 2);
+        let p012 = PointVector3D.newInt(0, 1, 2);
+        let p102 = PointVector3D.newInt(1, 0, 2);
+        let p112 = PointVector3D.newInt(1, 1, 2);
+        
+
+        let segments[0] = Segment.new(p000, p010);
+        let segments[1] = Segment.new(p000, p002);
+        let segments[2] = Segment.new(p010, p012);
+        let segments[3] = Segment.new(p002, p012);
+        let segments[4] = Segment.new(p002, p102);
+        let segments[5] = Segment.new(p102, p112);
+        let segments[6] = Segment.new(p112, p110);
+        let segments[7] = Segment.new(p112, p012);
+        let segments[8] = Segment.new(p010, p110);
+        let segments[9] = Segment.new(p000, p100);
+        let segments[10] = Segment.new(p100, p110);
+        let segments[11] = Segment.new(p100, p102);
+
+        return Shape.new(segments, 12, "Rectangle");
+    } 
+
+    function Shape getPrism3sides(){
+        var Array segments;
+        var PointVector3D p1, p2, p3, p4, p5, p6;
+
+        let segments = Array.new(9);
+
+        let p1 = PointVector3D.newInt(0, 0, 2);
+        let p2 = PointVector3D.newInt(0, 2, 2);
+        let p3 = PointVector3D.newInt(2, 0, 2);
+
+        let p4 = PointVector3D.newInt(0, 0, 0);
+        let p5 = PointVector3D.newInt(0, 2, 0);
+        let p6 = PointVector3D.newInt(2, 0, 0);
+
+        let segments[0] = Segment.new(p1, p2);
+        let segments[1] = Segment.new(p2, p3);
+        let segments[2] = Segment.new(p3, p1);
+        let segments[3] = Segment.new(p4, p5);
+        let segments[4] = Segment.new(p5, p6);
+        let segments[5] = Segment.new(p6, p4);
+        let segments[6] = Segment.new(p1, p4);
+        let segments[7] = Segment.new(p2, p5);
+        let segments[8] = Segment.new(p3, p6);
+
+        return Shape.new(segments, 9, "3-side Prism");
+    }
+
+    function Shape getPrism6sides(){
+        var Array segments;
+        var PointVector3D p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12;
+        var Fraction zeroFraction, oneFraction, twoFraction;
+
+        let segments = Array.new(18);
+        
+        let p1 = PointVector3D.newInt(0, 0, 2);
+        let p2 = PointVector3D.newInt(0, 2, 2);
+        let p3 = PointVector3D.newInt(2, 0, 2);
+
+        let p4 = PointVector3D.newInt(0, 0, 0);
+        let p5 = PointVector3D.newInt(0, 2, 0);
+        let p6 = PointVector3D.newInt(2, 0, 0);
+
+        let p7 = PointVector3D.newInt(zeroFraction, zeroFraction, twoFraction);
+        let p8 = PointVector3D.newInt(zeroFraction, twoFraction, twoFraction);
+        let p9 = PointVector3D.newInt(twoFraction, zeroFraction, twoFraction);
+
+        let p10 = PointVector3D.newInt(zeroFraction, zeroFraction, zeroFraction);
+        let p11 = PointVector3D.newInt(zeroFraction, twoFraction, zeroFraction);
+        let p12 = PointVector3D.newInt(twoFraction, zeroFraction, zeroFraction);
+
+
+
+        // let segments[0] = Segment.new();
+        // let segments[1] = Segment.new();
+        // let segments[2] = Segment.new();
+        // let segments[3] = Segment.new();
+        // let segments[4] = Segment.new();
+        // let segments[5] = Segment.new();
+        // let segments[6] = Segment.new();
+        // let segments[7] = Segment.new();
+        // let segments[8] = Segment.new();
+        // let segments[9] = Segment.new();
+        // let segments[10] = Segment.new();
+        // let segments[11] = Segment.new();
+        // let segments[12] = Segment.new();
+        // let segments[13] = Segment.new();
+        // let segments[14] = Segment.new();
+        // let segments[15] = Segment.new();
+        // let segments[16] = Segment.new();
+        // let segments[17] = Segment.new();
+
+        return Shape.new(segments, 12, "6-side Prism");
     }
 }

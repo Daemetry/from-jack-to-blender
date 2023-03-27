@@ -2,36 +2,125 @@ class Main
 {
     function void main()
     {
-        var int cameraYPos;
-        var Shape cube, cosahedron, currentShape, pyramid;
+        var int cameraYPos, cameraXPos, cameraZPos;
         var int screenWidth, screenHeight;
 
+        var Shape cube, icosahedron, pyramid, rectangle, testShape, prism3sides;
+        var Scene scene;
+
+        let cube = ShapeProvider.getCubeShape();
+        let icosahedron = ShapeProvider.getIcosahedron();
+        let rectangle = ShapeProvider.getRectangle();
+        let pyramid = ShapeProvider.getPyramid();
+        let prism3sides = ShapeProvider.getPrism3sides();
+        let testShape = ShapeProvider.getTestShape();
 
         let screenHeight = 256;
         let screenWidth = 512;
 
-        let cube = Shape.getCubeShape();
-        let cosahedron = Shape.getIcosahedron();
-        let pyramid = Shape.getPyramid();
-        
-        let currentShape = pyramid;
-
         let cameraYPos = 0;
-        do Render.renderShape(currentShape, cameraYPos, screenWidth, screenHeight);
+        let cameraXPos = -3;
+        let cameraZPos = 0;
+
+        let scene = Scene.new(prism3sides, cameraYPos, cameraXPos, cameraZPos, screenWidth, screenHeight);
+
+        // do Output.printString("Hello, we implemented some cool 3D shape renderer in Jack!");
+        // do Output.println();
+        // do Output.printString("To navigate through different shapes, use F2-F11");
+        // do Output.println();
+        // do Output.printString("Enjoy!");
+
+        // while (Keyboard.keyPressed() = 0){
+
+        // }
+
+        do Screen.clearScreen();        
+        do scene.render();
 
         while (true){
-            if (Keyboard.keyPressed() = 132){
+            // Camera rotation
+
+            if ((Keyboard.keyPressed() = 132) | (Keyboard.keyPressed() = 68)){ // Right Arrow or D (MOVE RIGHT)
                 let cameraYPos = cameraYPos - 1;
+                do scene.setCameraYPos(cameraYPos);
                 do Screen.clearScreen();
-                do Render.renderShape(currentShape, cameraYPos, screenWidth, screenHeight);
+                do scene.render();
             }
 
-            if (Keyboard.keyPressed() = 130){
+            if ((Keyboard.keyPressed() = 130) | (Keyboard.keyPressed() = 65)){ // Left Arrow or A (MOVE LEFT)
                 let cameraYPos = cameraYPos + 1;
+                do scene.setCameraYPos(cameraYPos);
                 do Screen.clearScreen();
-                do Render.renderShape(currentShape, cameraYPos, screenWidth, screenHeight);
+                do scene.render();
+            }
+
+            if (Keyboard.keyPressed() = 131){ // UP ARROW (ZOOM IN)
+                let cameraXPos = cameraXPos + 1;
+                do scene.setCameraXPos(cameraXPos);
+                do Screen.clearScreen();
+                do scene.render();
+            }
+
+            if (Keyboard.keyPressed() = 133){ // DOWN ARROW (ZOOM OUT)
+                let cameraXPos = cameraXPos - 1;
+                do scene.setCameraXPos(cameraXPos);
+                do Screen.clearScreen();
+                do scene.render();
+            }
+
+            if (Keyboard.keyPressed() = 136){ // PG UP 
+                let cameraZPos = cameraZPos + 1;
+                do scene.setCameraZPos(cameraZPos);
+                do Screen.clearScreen();
+                do scene.render();
+            }
+
+            if (Keyboard.keyPressed() = 137){ // PG DOWN
+                let cameraZPos = cameraZPos - 1;
+                do scene.setCameraXPos(cameraZPos);
+                do Screen.clearScreen();
+                do scene.render();
+            }
+
+            // Shape switch
+
+            if (Keyboard.keyPressed() = 49){ // CUBE (1)
+                do Screen.clearScreen();
+                do scene.setShape(cube);
+                do scene.render();
+            }
+
+            if (Keyboard.keyPressed() = 50){ // RECTANGLE (2)
+                do Screen.clearScreen();
+                do scene.setShape(rectangle); 
+                do scene.render();
+            }
+
+            if (Keyboard.keyPressed() = 51){ // ICOSAHEDRON (3)
+                do Screen.clearScreen();
+                do scene.setShape(icosahedron); 
+                do scene.render();
+            }
+
+            if (Keyboard.keyPressed() = 52){ // PYRAMID (4)
+                do Screen.clearScreen();
+                do scene.setShape(pyramid); 
+                do scene.render();
+            }
+
+            if (Keyboard.keyPressed() = 53){ // TEST SHAPE (5)
+                do Screen.clearScreen();
+                do scene.setShape(pyramid); 
+                do scene.render();
             }
         }
+
+        do scene.dispose();
+        do cube.dispose();
+        do cosahedron.dispose();
+        do rectangle.dispose();
+        do pyramid.dispose();
+        do testShape.dispose();
 
         return;
     }

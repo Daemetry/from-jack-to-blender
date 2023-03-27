@@ -1,0 +1,12 @@
+class ExtendedArray{
+    field Array arr;
+    field int length;
+    constructor ExtendedArray new(int size){
+        let arr = Array.new(size);
+        let length = size;
+        return this; 
+    }
+
+    method int getLength() { return length; }
+    method int getItems() { return arr; }
+}

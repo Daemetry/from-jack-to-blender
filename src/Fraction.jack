@@ -1,5 +1,5 @@
 class Fraction{
-    field int numerator, denominator;   
+    field int numerator, denominator; 
 
     function Fraction getDefault(){
         return Fraction.new(0, 1);

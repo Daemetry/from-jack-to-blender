@@ -1,28 +1,25 @@
 class ShapeProvider{
-    function Array getAllShapes(){
-        var Array result;
+    function ExtendedArray getAllShapes(){
+        var ExtendedArray result;
+        var Array resultItems;
         
-        let result = Array.new(4);
+        let result = ExtendedArray.new(5);
+        let resultItems = result.getItems();
+        let result = ExtendedArray.new(5);
+        let resultItems = result.getItems();
 
-        let result[0] = ShapeProvider.getCubeShape();
-        let result[1] = ShapeProvider.getRectangle();
-        let result[2] = ShapeProvider.getIcosahedron();
-        let result[3] = ShapeProvider.getPyramid();
+        let resultItems[0] = ShapeProvider.getCubeShape();
+        let resultItems[1] = ShapeProvider.getRectangle();
+        let resultItems[2] = ShapeProvider.getPyramid();
+        let resultItems[3] = ShapeProvider.getPrism3sides();
+        let resultItems[4] = ShapeProvider.getPrism6sides(2);
+        let resultItems[0] = ShapeProvider.getCubeShape();
+        let resultItems[1] = ShapeProvider.getRectangle();
+        let resultItems[2] = ShapeProvider.getPyramid();
+        let resultItems[3] = ShapeProvider.getPrism3sides();
+        let resultItems[4] = ShapeProvider.getPrism6sides(2);
 
         return result;
-    }
-
-    function Shape getTestShape(){
-        var Array segments;
-
-        let segments = Array.new(1);
-
-        let segments[0] = Segment.new(
-            PointVector3D.newInt(0, 0, 0), 
-            PointVector3D.newInt(0, 1, 0)
-        );
-
-        return Shape.new(segments, 1, "Test Shape");
     }
 
     function Shape getCubeShape(){
@@ -33,12 +30,16 @@ class ShapeProvider{
 
         let p000 = PointVector3D.newInt(0, 0, 0);
         let p010 = PointVector3D.newInt(0, 1, 0);
+        let p100 = PointVector3D.newInt(1, 0, 0);
+        let p110 = PointVector3D.newInt(1, 1, 0);
+
+        let p100 = PointVector3D.newInt(1, 0, 0);
+        let p110 = PointVector3D.newInt(1, 1, 0);
+
         let p001 = PointVector3D.newInt(0, 0, 1);
         let p011 = PointVector3D.newInt(0, 1, 1);
-        let p100 = PointVector3D.newInt(1, 0, 0);
         let p101 = PointVector3D.newInt(1, 0, 1);
         let p111 = PointVector3D.newInt(1, 1, 1);
-        let p110 = PointVector3D.newInt(1, 1, 0);
 
         let segments[0] = Segment.new(p000, p010);
         let segments[1] = Segment.new(p000, p001);
@@ -55,189 +56,7 @@ class ShapeProvider{
 
         return Shape.new(segments, 12, "Cube");
     } 
-
-    function Shape getIcosahedron(){
-        var PointVector3D a, b, c, d, e, f;
-        var PointVector3D g, h, i, j, k, l;
-        var Fraction x, y, z;
-        var Segment ad, aj, ac, ak, ab;
-        var Segment bg, bi, bd;
-        var Segment cf, cj;
-        var Segment dc, dl, di;
-        var Segment ej, ec, ef;
-        var Segment fg;
-        var Segment gi;
-        var Segment he, hf, hg, hl, hi;
-        var Segment jd;
-        var Segment kb, kg, kf, kc;
-        var Segment li, lj, le; // 31
-        var Array segments;
-
-        let segments = Array.new(31);
-
-        // vertices
-
-        let x = Fraction.new(-2, 100);
-        let y = Fraction.new(-179, 100);
-        let z = Fraction.new(89, 100);
-
-        let a = PointVector3D.new(x, y, z);
-
-        let x = Fraction.new(-171, 100);
-        let y = Fraction.new(-54, 100);
-        let z = Fraction.new(89, 100);
-
-        let b = PointVector3D.new(x, y, z);
-
-        let x = Fraction.new(170, 100);
-        let y = Fraction.new(-57, 100);
-        let z = Fraction.new(89, 100);
-
-        let c = PointVector3D.new(x, y, z);
-        
-        let x = Fraction.new(-107, 100);
-        let y = Fraction.new(-144, 100);
-        let z = Fraction.new(-89, 100);
-
-        let d = PointVector3D.new(x, y, z);
-
-        let x = Fraction.new(171, 100);
-        let y = Fraction.new(54, 100);
-        let z = Fraction.new(-89, 100);
-
-        let e = PointVector3D.new(x, y, z);
-
-        let x = Fraction.new(107, 100);
-        let y = Fraction.new(144, 100);
-        let z = Fraction.new(89, 100);
-
-        let f = PointVector3D.new(x, y, z);
-
-        let x = Fraction.new(-104, 100);
-        let y = Fraction.new(146, 100);
-        let z = Fraction.new(89, 100);
-
-        let g = PointVector3D.new(x, y, z);
-
-        let x = Fraction.new(2, 100);
-        let y = Fraction.new(179, 100);
-        let z = Fraction.new(-89, 100);
-
-        let h = PointVector3D.new(x, y, z);
-
-        let x = Fraction.new(-170, 100);
-        let y = Fraction.new(57, 100);
-        let z = Fraction.new(-89, 100);
-
-        let i = PointVector3D.new(x, y, z);
-
-        let x = Fraction.new(104, 100);
-        let y = Fraction.new(-146, 100);
-        let z = Fraction.new(89, 100);
-
-        let j = PointVector3D.new(x, y, z);
-
-        let x = Fraction.new(0, 1);
-        let y = Fraction.new(0, 1);
-        let z = Fraction.new(2, 1);
-
-        let k = PointVector3D.new(x, y, z);
-
-        let x = Fraction.new(0, 1);
-        let y = Fraction.new(0, 1);
-        let z = Fraction.new(-2, 1);
-
-        let l = PointVector3D.new(x, y, z);
-
-        // edges
-
-        let ad = Segment.new(a,d);
-        let aj = Segment.new(a,j);
-        let ac = Segment.new(a,c);
-        let ak = Segment.new(a,k);
-        let ab = Segment.new(a,b);
-
-        let bg = Segment.new(b,g);
-        let bi = Segment.new(b,i);
-        let bd = Segment.new(b,d);
-
-        let cf = Segment.new(c,f);
-        let cj = Segment.new(c,j);
-
-        let dc = Segment.new(d,c);
-        let dl = Segment.new(d,l);
-        let di = Segment.new(d,i);
-
-        let ej = Segment.new(e,j);
-        let ec = Segment.new(e,c);
-        let ef = Segment.new(e,f);
-
-        let fg = Segment.new(f,g);
-
-        let gi = Segment.new(g,i);
-
-        let he = Segment.new(h,e);
-        let hf = Segment.new(h,f);
-        let hg = Segment.new(h,g);
-        let hl = Segment.new(h,l);
-        let hi = Segment.new(h,i);
-
-        let jd = Segment.new(j,d);
-
-        let kb = Segment.new(k,b);
-        let kg = Segment.new(k,g);
-        let kf = Segment.new(k,f);
-        let kc = Segment.new(k,c);
-
-        let li = Segment.new(l,i);
-        let lj = Segment.new(l,j);
-        let le = Segment.new(l,e);
-
-        let segments[0] = ad;
-        let segments[1] = aj;
-        let segments[2] = ac;
-        let segments[3] = ak;
-        let segments[4] = ab;
-
-        let segments[5] = bg;
-        let segments[6] = bi;
-        let segments[7] = bd;
-
-        let segments[8] = cf;
-        let segments[9] = cj;
-
-        let segments[10] = dc;
-        let segments[11] = dl;
-        let segments[12] = di;
-
-        let segments[13] = ej;
-        let segments[14] = ec;
-        let segments[15] = ef;
-
-        let segments[16] = fg;
-
-        let segments[17] = gi;
-
-        let segments[18] = he;
-        let segments[19] = hf;
-        let segments[20] = hg;
-        let segments[21] = hl;
-        let segments[22] = hi;
-
-        let segments[23] = jd;
-
-        let segments[24] = kb;
-        let segments[25] = kg;
-        let segments[26] = kf;
-        let segments[27] = kc;
-
-        let segments[28] = li;
-        let segments[29] = lj;
-        let segments[30] = le;
-
-        return Shape.new(segments, 31, "Icosahedron");
-    }
-
+    
     function Shape getPyramid(){
         var PointVector3D a, b, c, d, e;
         var Fraction x, y, z;
@@ -355,50 +174,81 @@ class ShapeProvider{
         return Shape.new(segments, 9, "3-side Prism");
     }
 
-    function Shape getPrism6sides(){
+    function Shape getPrism6sides(int height){
         var Array segments;
         var PointVector3D p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12;
         var Fraction zeroFraction, oneFraction, twoFraction;
 
         let segments = Array.new(18);
         
-        let p1 = PointVector3D.newInt(0, 0, 2);
-        let p2 = PointVector3D.newInt(0, 2, 2);
-        let p3 = PointVector3D.newInt(2, 0, 2);
+        let p1 = PointVector3D.newInt(1, 0, 0);
+        let p2 = PointVector3D.newInt(3, 0, 0);
+        let p3 = PointVector3D.newInt(4, 0, 1);
+        let p1 = PointVector3D.newInt(1, 0, 0);
+        let p2 = PointVector3D.newInt(3, 0, 0);
+        let p3 = PointVector3D.newInt(4, 0, 1);
 
-        let p4 = PointVector3D.newInt(0, 0, 0);
-        let p5 = PointVector3D.newInt(0, 2, 0);
-        let p6 = PointVector3D.newInt(2, 0, 0);
+        let p4 = PointVector3D.newInt(3, 0, 2);
+        let p5 = PointVector3D.newInt(1, 0, 2);
+        let p6 = PointVector3D.newInt(0, 0, 1);
+        let p4 = PointVector3D.newInt(3, 0, 2);
+        let p5 = PointVector3D.newInt(1, 0, 2);
+        let p6 = PointVector3D.newInt(0, 0, 1);
 
-        let p7 = PointVector3D.newInt(zeroFraction, zeroFraction, twoFraction);
-        let p8 = PointVector3D.newInt(zeroFraction, twoFraction, twoFraction);
-        let p9 = PointVector3D.newInt(twoFraction, zeroFraction, twoFraction);
+        
+        let p7 = PointVector3D.newInt(1, height, 0);
+        let p8 = PointVector3D.newInt(3, height, 0);
+        let p9 = PointVector3D.newInt(4, height, 1);
 
-        let p10 = PointVector3D.newInt(zeroFraction, zeroFraction, zeroFraction);
-        let p11 = PointVector3D.newInt(zeroFraction, twoFraction, zeroFraction);
-        let p12 = PointVector3D.newInt(twoFraction, zeroFraction, zeroFraction);
+        let p10 = PointVector3D.newInt(3, height, 2);
+        let p11 = PointVector3D.newInt(1, height, 2);
+        let p12 = PointVector3D.newInt(0, height, 1);
+        
+        let p7 = PointVector3D.newInt(1, height, 0);
+        let p8 = PointVector3D.newInt(3, height, 0);
+        let p9 = PointVector3D.newInt(4, height, 1);
 
+        let p10 = PointVector3D.newInt(3, height, 2);
+        let p11 = PointVector3D.newInt(1, height, 2);
+        let p12 = PointVector3D.newInt(0, height, 1);
 
+        let segments[0] = Segment.new(p1, p2);
+        let segments[1] = Segment.new(p2, p3);
+        let segments[2] = Segment.new(p3, p4);
+        let segments[3] = Segment.new(p4, p5);
+        let segments[4] = Segment.new(p5, p6);
+        let segments[5] = Segment.new(p6, p1);
+        let segments[6] = Segment.new(p7, p8);
+        let segments[7] = Segment.new(p8, p9);
+        let segments[8] = Segment.new(p9, p10);
+        let segments[9] = Segment.new(p10, p11);
+        let segments[10] = Segment.new(p11, p12);
+        let segments[11] = Segment.new(p12, p7);
+        let segments[12] = Segment.new(p1, p7);
+        let segments[13] = Segment.new(p2, p8);
+        let segments[14] = Segment.new(p3, p9);
+        let segments[15] = Segment.new(p4, p10);
+        let segments[16] = Segment.new(p5, p11);
+        let segments[17] = Segment.new(p6, p12);
+        let segments[0] = Segment.new(p1, p2);
+        let segments[1] = Segment.new(p2, p3);
+        let segments[2] = Segment.new(p3, p4);
+        let segments[3] = Segment.new(p4, p5);
+        let segments[4] = Segment.new(p5, p6);
+        let segments[5] = Segment.new(p6, p1);
+        let segments[6] = Segment.new(p7, p8);
+        let segments[7] = Segment.new(p8, p9);
+        let segments[8] = Segment.new(p9, p10);
+        let segments[9] = Segment.new(p10, p11);
+        let segments[10] = Segment.new(p11, p12);
+        let segments[11] = Segment.new(p12, p7);
+        let segments[12] = Segment.new(p1, p7);
+        let segments[13] = Segment.new(p2, p8);
+        let segments[14] = Segment.new(p3, p9);
+        let segments[15] = Segment.new(p4, p10);
+        let segments[16] = Segment.new(p5, p11);
+        let segments[17] = Segment.new(p6, p12);
 
-        // let segments[0] = Segment.new();
-        // let segments[1] = Segment.new();
-        // let segments[2] = Segment.new();
-        // let segments[3] = Segment.new();
-        // let segments[4] = Segment.new();
-        // let segments[5] = Segment.new();
-        // let segments[6] = Segment.new();
-        // let segments[7] = Segment.new();
-        // let segments[8] = Segment.new();
-        // let segments[9] = Segment.new();
-        // let segments[10] = Segment.new();
-        // let segments[11] = Segment.new();
-        // let segments[12] = Segment.new();
-        // let segments[13] = Segment.new();
-        // let segments[14] = Segment.new();
-        // let segments[15] = Segment.new();
-        // let segments[16] = Segment.new();
-        // let segments[17] = Segment.new();
-
-        return Shape.new(segments, 12, "6-side Prism");
+        return Shape.new(segments, 18, "6-side Prism");
     }
 }

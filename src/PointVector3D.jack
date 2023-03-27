@@ -16,19 +16,14 @@ class PointVector3D
         let x = coordX;
         let y = coordY;
         let z = coordZ;
-
+         
         return this;
     }
 
     constructor PointVector3D newInt(int coordX, int coordY, int coordZ){
-        var Fraction xFraction, yFraction, zFraction;
-        let xFraction = Fraction.new(coordX, 1);
-        let yFraction = Fraction.new(coordY, 1);
-        let zFraction = Fraction.new(coordZ, 1);
-
-        let x = xFraction;
-        let y = yFraction;
-        let z = zFraction;
+        let x = Fraction.new(coordX, 1);
+        let y = Fraction.new(coordY, 1);
+        let z = Fraction.new(coordZ, 1);
 
         return this;
     }
@@ -225,6 +220,9 @@ class PointVector3D
         do y.dispose();
         do z.dispose();
         do Memory.deAlloc(this);
+        do x.dispose();
+        do y.dispose();
+        do z.dispose();
         return;
     }
 }

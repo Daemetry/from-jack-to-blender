@@ -1,296 +1,271 @@
-function Main.main 25
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push constant 3
-neg
-push constant 1
-call Fraction.newUnreduced 2
-push constant 3
-push constant 1
-call Fraction.newUnreduced 2
-call Fraction.getDefault 0
-call PointVector3D.new 3
-pop local 1
-push constant 2
-neg
-push constant 1
-call Fraction.newUnreduced 2
-push constant 2
-push constant 1
-call Fraction.newUnreduced 2
-push constant 1
-neg
-push constant 1
-call Fraction.newUnreduced 2
-call PointVector3D.new 3
+function Main.main 12
+call ShapeProvider.getCubeShape 0
 pop local 5
-call Fraction.getDefault 0
-push constant 4
-neg
-push constant 1
-call Fraction.newUnreduced 2
-call Fraction.getDefault 0
-call PointVector3D.new 3
-pop local 4
-call Fraction.getDefault 0
-call Fraction.getDefault 0
-push constant 2
-push constant 1
-call Fraction.newUnreduced 2
-call PointVector3D.new 3
-pop local 3
-push local 4
-push local 3
-call PointVector3D.crossProduct 2
+call ShapeProvider.getIcosahedron 0
 pop local 6
-push local 5
-push local 1
-call PointVector3D.vectorSub 2
-pop local 2
-push local 2
-push local 6
-call PointVector3D.dotProduct 2
-pop local 11
-push local 2
-call PointVector3D.dispose 1
-pop temp 0
-call Shape.getCubeShape 0
-pop local 22
-push local 22
-call Shape.getSegments 1
-pop local 23
+call ShapeProvider.getRectangle 0
+pop local 8
+call ShapeProvider.getPyramid 0
+pop local 7
+call ShapeProvider.getPrism3sides 0
+pop local 10
+call ShapeProvider.getTestShape 0
+pop local 9
+push constant 256
+pop local 4
+push constant 512
+pop local 3
 push constant 0
 pop local 0
-label WHILE_EXP0
+push constant 3
+neg
+pop local 1
+push constant 0
+pop local 2
+push local 10
 push local 0
-push local 22
-call Shape.getSegmentsCount 1
-lt
+push local 1
+push local 2
+push local 3
+push local 4
+call Scene.new 6
+pop local 11
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label WHILE_EXP0
+push constant 0
+not
 not
 if-goto WHILE_END0
+call Keyboard.keyPressed 0
+push constant 132
+eq
+call Keyboard.keyPressed 0
+push constant 68
+eq
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push local 0
-push local 23
-add
-pop pointer 1
-push that 0
-pop local 24
-push local 24
-call Segment.getPoint1 1
-pop local 7
-push local 7
-push local 1
-call PointVector3D.vectorSub 2
-pop local 7
-push local 7
-push local 6
-call PointVector3D.dotProduct 2
-pop local 12
-push local 24
-call Segment.getPoint2 1
-pop local 8
-push local 8
-push local 1
-call PointVector3D.vectorSub 2
-pop local 8
-push local 8
-push local 6
-call PointVector3D.dotProduct 2
-pop local 13
+push constant 1
+sub
+pop local 0
 push local 11
-push local 12
-call Fraction.div 2
-pop local 14
+push local 0
+call Scene.setCameraYPos 2
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
 push local 11
-push local 13
-call Fraction.div 2
-pop local 15
-push local 12
-call Fraction.dispose 1
+call Scene.render 1
 pop temp 0
-push local 13
-call Fraction.dispose 1
-pop temp 0
-push local 7
-push local 14
-call PointVector3D.fracMult 2
-pop local 2
-push local 1
-push local 2
-call PointVector3D.vectorAdd 2
-pop local 9
-push local 2
-call PointVector3D.dispose 1
-pop temp 0
-push local 9
-pop local 2
-push local 2
-push local 5
-call PointVector3D.vectorSub 2
-pop local 9
-push local 2
-call PointVector3D.dispose 1
-pop temp 0
-push local 14
-call Fraction.dispose 1
-pop temp 0
-push local 8
-push local 15
-call PointVector3D.fracMult 2
-pop local 2
-push local 1
-push local 2
-call PointVector3D.vectorAdd 2
-pop local 10
-push local 2
-call PointVector3D.dispose 1
-pop temp 0
-push local 10
-pop local 2
-push local 2
-push local 5
-call PointVector3D.vectorSub 2
-pop local 10
-push local 2
-call PointVector3D.dispose 1
-pop temp 0
-push local 15
-call Fraction.dispose 1
-pop temp 0
-push local 4
-push local 4
-call PointVector3D.dotProduct 2
-pop local 21
-push local 4
-push local 9
-call PointVector3D.dotProduct 2
-pop local 20
-push local 20
-push local 21
-call Fraction.div 2
-pop local 16
-push local 20
-call Fraction.dispose 1
-pop temp 0
-push local 4
-push local 10
-call PointVector3D.dotProduct 2
-pop local 20
-push local 20
-push local 21
-call Fraction.div 2
-pop local 18
-push local 20
-call Fraction.dispose 1
-pop temp 0
-push local 21
-call Fraction.dispose 1
-pop temp 0
-push local 3
-push local 3
-call PointVector3D.dotProduct 2
-pop local 21
-push local 3
-push local 9
-call PointVector3D.dotProduct 2
-pop local 20
-push local 20
-push local 21
-call Fraction.div 2
-pop local 17
-push local 20
-call Fraction.dispose 1
-pop temp 0
-push local 3
-push local 10
-call PointVector3D.dotProduct 2
-pop local 20
-push local 20
-push local 21
-call Fraction.div 2
-pop local 19
-push local 20
-call Fraction.dispose 1
-pop temp 0
-push local 21
-call Fraction.dispose 1
-pop temp 0
-push local 16
-pop local 20
-push local 20
-push constant 512
-call Fraction.multInt 2
-pop local 16
-push local 20
-call Fraction.dispose 1
-pop temp 0
-push local 18
-pop local 20
-push local 20
-push constant 512
-call Fraction.multInt 2
-pop local 18
-push local 20
-call Fraction.dispose 1
-pop temp 0
-push local 17
-pop local 20
-push local 20
-push constant 256
-call Fraction.multInt 2
-pop local 17
-push local 20
-call Fraction.dispose 1
-pop temp 0
-push local 19
-pop local 20
-push local 20
-push constant 256
-call Fraction.multInt 2
-pop local 19
-push local 20
-call Fraction.dispose 1
-pop temp 0
-push local 16
-call Fraction.toInt 1
-push local 17
-call Fraction.toInt 1
-push local 18
-call Fraction.toInt 1
-push local 19
-call Fraction.toInt 1
-call Screen.drawLine 4
-pop temp 0
-push local 7
-call PointVector3D.dispose 1
-pop temp 0
-push local 8
-call PointVector3D.dispose 1
-pop temp 0
-push local 9
-call PointVector3D.dispose 1
-pop temp 0
-push local 10
-call PointVector3D.dispose 1
-pop temp 0
-push local 16
-call Fraction.dispose 1
-pop temp 0
-push local 18
-call Fraction.dispose 1
-pop temp 0
-push local 17
-call Fraction.dispose 1
-pop temp 0
-push local 19
-call Fraction.dispose 1
-pop temp 0
+label IF_FALSE0
+call Keyboard.keyPressed 0
+push constant 130
+eq
+call Keyboard.keyPressed 0
+push constant 65
+eq
+or
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
 push local 0
 push constant 1
 add
 pop local 0
+push local 11
+push local 0
+call Scene.setCameraYPos 2
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label IF_FALSE1
+call Keyboard.keyPressed 0
+push constant 131
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 1
+push constant 1
+add
+pop local 1
+push local 11
+push local 1
+call Scene.setCameraXPos 2
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label IF_FALSE2
+call Keyboard.keyPressed 0
+push constant 133
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 1
+push constant 1
+sub
+pop local 1
+push local 11
+push local 1
+call Scene.setCameraXPos 2
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label IF_FALSE3
+call Keyboard.keyPressed 0
+push constant 136
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 2
+push constant 1
+add
+pop local 2
+push local 11
+push local 2
+call Scene.setCameraZPos 2
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label IF_FALSE4
+call Keyboard.keyPressed 0
+push constant 137
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push local 2
+push constant 1
+sub
+pop local 2
+push local 11
+push local 2
+call Scene.setCameraXPos 2
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label IF_FALSE5
+call Keyboard.keyPressed 0
+push constant 49
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+push local 5
+call Scene.setShape 2
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label IF_FALSE6
+call Keyboard.keyPressed 0
+push constant 50
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+push local 8
+call Scene.setShape 2
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label IF_FALSE7
+call Keyboard.keyPressed 0
+push constant 51
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+push local 6
+call Scene.setShape 2
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label IF_FALSE8
+call Keyboard.keyPressed 0
+push constant 52
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+push local 7
+call Scene.setShape 2
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label IF_FALSE9
+call Keyboard.keyPressed 0
+push constant 53
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+call Screen.clearScreen 0
+pop temp 0
+push local 11
+push local 7
+call Scene.setShape 2
+pop temp 0
+push local 11
+call Scene.render 1
+pop temp 0
+label IF_FALSE10
 goto WHILE_EXP0
 label WHILE_END0
+push local 11
+call Scene.dispose 1
+pop temp 0
+push local 5
+call Shape.dispose 1
+pop temp 0
+call cosahedron.dispose 0
+pop temp 0
+push local 8
+call Shape.dispose 1
+pop temp 0
+push local 7
+call Shape.dispose 1
+pop temp 0
+push local 9
+call Shape.dispose 1
+pop temp 0
 push constant 0
 return

@@ -221,6 +221,9 @@ class PointVector3D
 
     method void dispose()
     {
+        do x.dispose();
+        do y.dispose();
+        do z.dispose();
         do Memory.deAlloc(this);
         return;
     }

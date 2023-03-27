@@ -75,9 +75,7 @@ eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push constant 0
-push constant 0
-call Fraction.new 2
+call Fraction.getDefault 0
 return
 label IF_FALSE3
 push argument 0

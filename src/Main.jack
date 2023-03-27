@@ -5,13 +5,14 @@ class Main
         var int cameraYPos, cameraXPos, cameraZPos;
         var int screenWidth, screenHeight;
 
-        var Shape cube, icosahedron, pyramid, rectangle, testShape;
+        var Shape cube, icosahedron, pyramid, rectangle, testShape, prism3sides;
         var Scene scene;
 
         let cube = ShapeProvider.getCubeShape();
         let icosahedron = ShapeProvider.getIcosahedron();
         let rectangle = ShapeProvider.getRectangle();
         let pyramid = ShapeProvider.getPyramid();
+        let prism3sides = ShapeProvider.getPrism3sides();
         let testShape = ShapeProvider.getTestShape();
 
         let screenHeight = 256;
@@ -21,7 +22,7 @@ class Main
         let cameraXPos = -3;
         let cameraZPos = 0;
 
-        let scene = Scene.new(testShape, cameraYPos, cameraXPos, cameraZPos, screenWidth, screenHeight);
+        let scene = Scene.new(prism3sides, cameraYPos, cameraXPos, cameraZPos, screenWidth, screenHeight);
 
         // do Output.printString("Hello, we implemented some cool 3D shape renderer in Jack!");
         // do Output.println();
@@ -39,14 +40,14 @@ class Main
         while (true){
             // Camera rotation
 
-            if (Keyboard.keyPressed() = 132){ // RIGHT ARROW (MOVE RIGHT)
+            if ((Keyboard.keyPressed() = 132) | (Keyboard.keyPressed() = 68)){ // Right Arrow or D (MOVE RIGHT)
                 let cameraYPos = cameraYPos - 1;
                 do scene.setCameraYPos(cameraYPos);
                 do Screen.clearScreen();
                 do scene.render();
             }
 
-            if (Keyboard.keyPressed() = 130){ // LEFT ARROW (MOVE LEFT)
+            if ((Keyboard.keyPressed() = 130) | (Keyboard.keyPressed() = 65)){ // Left Arrow or A (MOVE LEFT)
                 let cameraYPos = cameraYPos + 1;
                 do scene.setCameraYPos(cameraYPos);
                 do Screen.clearScreen();

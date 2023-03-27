@@ -300,7 +300,7 @@ class Scene{
         do Output.moveCursor(1, 1);
         do Output.printString(shape.getName());
         
-        let camera = PointVector3D.new( Fraction.newUnreduced(cameraXPos, 1), Fraction.newUnreduced(cameraYPos, 1), Fraction.getDefault() );
+        let camera = PointVector3D.new( Fraction.newUnreduced(cameraXPos, 1), Fraction.newUnreduced(cameraYPos, 2), Fraction.getDefault() );
 
         // Setup camera
         // let cameraX = Fraction.newUnreduced(cameraXPos, 1);

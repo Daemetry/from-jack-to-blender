@@ -20,6 +20,19 @@ class PointVector3D
         return this;
     }
 
+    constructor PointVector3D newInt(int coordX, int coordY, int coordZ){
+        var Fraction xFraction, yFraction, zFraction;
+        let xFraction = Fraction.new(coordX, 1);
+        let yFraction = Fraction.new(coordY, 1);
+        let zFraction = Fraction.new(coordZ, 1);
+
+        let x = xFraction;
+        let y = yFraction;
+        let z = zFraction;
+
+        return this;
+    }
+
     /* I wish these could be C# properties! */
     method Fraction getXcoord() { return x; }
     method Fraction getYcoord() { return y; }

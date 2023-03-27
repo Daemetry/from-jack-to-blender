@@ -1,6 +1,0 @@
-class SceneBuilder {
-    
-    constructor SceneBuilder new(){
-        return this;
-    }
-} 

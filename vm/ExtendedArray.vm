@@ -1,0 +1,21 @@
+function ExtendedArray.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+call Array.new 1
+pop this 0
+push argument 0
+pop this 1
+push pointer 0
+return
+function ExtendedArray.getLength 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function ExtendedArray.getItems 0
+push argument 0
+pop pointer 0
+push this 0
+return
